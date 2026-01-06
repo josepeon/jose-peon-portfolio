@@ -23,7 +23,7 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
   });
 
   const yPosition = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
-  const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1.2, 1.15]);
+  const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [1.02, 1.04, 1.02]);
 
   // Separate transitions for top and bottom text due to 120vh container
   const bottomTextPosition = useTransform(
@@ -46,7 +46,7 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
     >
       {/* Background Image */}
       <motion.div
-        className="fixed top-0 left-0 h-[120vh] w-full"
+        className="relative h-[115%] w-full"
         style={{ y: yPosition, scaleY }}
       >
         <Image
