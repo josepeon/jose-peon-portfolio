@@ -4,7 +4,6 @@ import { useMotionValue, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
-import SplineCursor from '@/components/SplineCursor';
 import { projects } from '@/data/projects';
 
 const spring = {
@@ -51,7 +50,6 @@ export default function Home() {
         <Gallery mousePosition={mousePosition} project={project} key={i} />
       ))}
       <Description mousePosition={mousePosition} projects={projects} />
-      <SplineCursor mousePosition={mousePosition} />
     </main>
   );
 }

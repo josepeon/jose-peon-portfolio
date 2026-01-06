@@ -15,7 +15,7 @@ export default function Cursor({ mousePosition, cursorIndex }: CursorProps) {
 
   return (
     <motion.div
-      className="pointer-events-none fixed left-1/2 top-1/2 h-[500px] w-[350px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl"
+      className="pointer-events-none fixed left-1/2 top-1/2 h-[400px] w-[250px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl"
       style={{
         x,
         y,
