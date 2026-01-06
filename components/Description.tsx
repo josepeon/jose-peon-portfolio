@@ -31,19 +31,34 @@ export default function Description({ mousePosition, projects }: DescriptionProp
       </div>
 
       <motion.div
-        className="fixed top-0 h-[30vw] w-[25vw] overflow-hidden"
+        className="fixed top-0 pointer-events-none"
         style={{
           x,
           y,
-          borderRadius: '1.5vw',
         }}
       >
-        <Image
-          src={`/images/cursors/cursor_${projects[index].handle.split('_')[1]}.jpg`}
-          alt="project preview"
-          fill
-          className="object-cover"
-        />
+        <div className="h-[30vw] w-[25vw] rounded-[1.5vw] overflow-hidden relative">
+          <Image
+            src={`/images/cursors/cursor_${projects[index].handle.split('_')[1]}.jpg`}
+            alt="project preview"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* ENTER PROJECT text below cursor */}
+        <div 
+          className="text-white text-right mt-4 pr-2"
+          style={{ 
+            fontFamily: 'Helvetica', 
+            fontSize: '16px', 
+            fontWeight: 400,
+            width: '25vw',
+            zIndex: 9999,
+          }}
+        >
+          ENTER PROJECT
+        </div>
       </motion.div>
     </div>
   );
