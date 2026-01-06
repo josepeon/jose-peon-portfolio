@@ -25,15 +25,21 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
   const yPosition = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
   const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [1.02, 1.04, 1.02]);
   
-  // Text position: fixed until 0.5, then transition to natural position
-  const textPosition = useTransform(
+  // Separate transitions for top and bottom text due to 120vh container
+  const bottomTextPosition = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.6],
+    [0, 0.545, 0.548],
+    ['fixed', 'fixed', 'absolute']
+  );
+  
+  const topTextPosition = useTransform(
+    scrollYProgress,
+    [0, 0.455, 1.0],
     ['fixed', 'fixed', 'absolute']
   );
 
   return (
-    <div ref={container} className="relative h-screen w-full overflow-hidden" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
+    <div ref={container} className="relative h-[120vh] w-full overflow-hidden" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
       {/* Background Image */}
       <motion.div 
         className="relative h-[115%] w-full"
@@ -54,7 +60,7 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
       <motion.div 
         className="left-[97px] top-[47px] text-white"
         style={{ 
-          position: textPosition as any,
+          position: topTextPosition as any,
           zIndex: 10,
           fontFamily: 'Helvetica', 
           fontSize: '20px', 
@@ -73,7 +79,7 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
       <motion.div 
         className="bottom-[50px] left-[97px] text-white"
         style={{ 
-          position: textPosition as any,
+          position: bottomTextPosition as any,
           zIndex: 10,
           fontFamily: 'Helvetica', 
           fontSize: '20px', 
@@ -87,7 +93,7 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
       <motion.div 
         className="bottom-[50px] right-[73px] text-white"
         style={{ 
-          position: textPosition as any,
+          position: bottomTextPosition as any,
           zIndex: 10,
           fontFamily: 'Helvetica', 
           fontSize: '20px', 
