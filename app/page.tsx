@@ -36,7 +36,7 @@ export default function Home() {
       duration: 2.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 0.5,
+      wheelMultiplier: 0.7,
     });
 
     lenisRef.current = lenis;
