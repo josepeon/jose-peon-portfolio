@@ -22,20 +22,21 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
     offset: ['start end', 'end start']
   });
 
-  const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.15, 1]);
+  const yPosition = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
 
   return (
-    <div ref={container} className="relative h-[120vh] w-full" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
-      {/* Background Image with scale animation */}
+    <div ref={container} className="relative h-screen w-full overflow-hidden" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
+      {/* Background Image */}
       <motion.div 
-        className="relative h-full w-full"
-        style={{ scaleY }}
+        className="relative h-[115%] w-full"
+        style={{ y: yPosition }}
       >
         <Image
           src={`/images/scenes/${project.handle}.jpg`}
           alt={`${project.handle} background`}
           fill
           className="object-cover"
+          style={{ objectPosition: 'center' }}
           priority
         />
       </motion.div>
