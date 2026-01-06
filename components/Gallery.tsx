@@ -23,13 +23,21 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
   });
 
   const yPosition = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
+  const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [1.02, 1.04, 1.02]);
+  
+  // Text position: fixed until 0.5, then transition to natural position
+  const textPosition = useTransform(
+    scrollYProgress,
+    [0, 0.5, 0.6],
+    ['fixed', 'fixed', 'absolute']
+  );
 
   return (
     <div ref={container} className="relative h-screen w-full overflow-hidden" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
       {/* Background Image */}
       <motion.div 
         className="relative h-[115%] w-full"
-        style={{ y: yPosition }}
+        style={{ y: yPosition, scaleY }}
       >
         <Image
           src={`/images/scenes/${project.handle}.jpg`}
@@ -41,25 +49,53 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
         />
       </motion.div>
 
-      {/* Text overlays - outside the scaled container */}
+      {/* Text overlays - revealed by previous scene's background scrolling away */}
       {/* Top Left Text */}
-      <div className="absolute left-[97px] top-[47px] text-white" style={{ fontFamily: 'Helvetica', fontSize: '20px', fontWeight: 400, lineHeight: '1.5' }}>
+      <motion.div 
+        className="left-[97px] top-[47px] text-white"
+        style={{ 
+          position: textPosition as any,
+          zIndex: 10,
+          fontFamily: 'Helvetica', 
+          fontSize: '20px', 
+          fontWeight: 400, 
+          lineHeight: '1.5' 
+        }}
+      >
         {project.topLeftText.map((line, i) => (
           <div key={i}>
             {line || '\u00A0'}
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Bottom Left Text */}
-      <div className="absolute bottom-[50px] left-[97px] text-white" style={{ fontFamily: 'Helvetica', fontSize: '20px', fontWeight: 400 }}>
+      <motion.div 
+        className="bottom-[50px] left-[97px] text-white"
+        style={{ 
+          position: textPosition as any,
+          zIndex: 10,
+          fontFamily: 'Helvetica', 
+          fontSize: '20px', 
+          fontWeight: 400 
+        }}
+      >
         {project.bottomLeftText}
-      </div>
+      </motion.div>
 
       {/* Bottom Right Year */}
-      <div className="absolute bottom-[50px] right-[73px] text-white" style={{ fontFamily: 'Helvetica', fontSize: '20px', fontWeight: 400 }}>
+      <motion.div 
+        className="bottom-[50px] right-[73px] text-white"
+        style={{ 
+          position: textPosition as any,
+          zIndex: 10,
+          fontFamily: 'Helvetica', 
+          fontSize: '20px', 
+          fontWeight: 400 
+        }}
+      >
         {project.year}
-      </div>
+      </motion.div>
 
       {/* Vignette - fixed position, clipped by parent */}
       <motion.div
