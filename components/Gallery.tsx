@@ -33,18 +33,18 @@ export default function Gallery({ project, mousePosition, index }: GalleryProps)
     ["fixed", "fixed", "absolute"]
   );
 
-  // Top text stays fixed at 47px until it aligns with 200px from container top
+  // Top text stays fixed at 47px until it aligns with its absolute position
   const topTextPosition = useTransform(
     scrollYProgress,
-    [0, 0.5745, 0.5745],
+    [0, 0.5255, 0.5255],
     ["fixed", "fixed", "absolute"]
   );
 
-  // Top position stays at 47px when fixed, then 200px when absolute
+  // Use viewport units for responsive positioning
   const topTextTop = useTransform(
     scrollYProgress,
-    [0, 0.5745, 0.5745],
-    ["47px", "47px", "305px"]
+    [0, 0.5255, 0.5255],
+    ["47px", "47px", "calc(47px + 15.6vh)"]
   );
 
   return (
