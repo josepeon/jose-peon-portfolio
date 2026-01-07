@@ -119,7 +119,7 @@ export default function Home() {
   return (
     <main onMouseMove={handleMouseMove} className="relative cursor-none">
       {projects.map((project, i) => (
-        <Gallery mousePosition={mousePosition} project={project} key={i} />
+        <Gallery mousePosition={mousePosition} project={project} index={i} key={i} />
       ))}
       <Description mousePosition={mousePosition} projects={projects} />
     </main>

@@ -10,9 +10,10 @@ interface GalleryProps {
     x: MotionValue<number>;
     y: MotionValue<number>;
   };
+  index: number;
 }
 
-export default function Gallery({ project, mousePosition }: GalleryProps) {
+export default function Gallery({ project, mousePosition, index }: GalleryProps) {
   const { x, y } = mousePosition;
   const sceneNumber = project.handle.split("_")[1];
   const container = useRef(null);
@@ -32,10 +33,18 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
     ["fixed", "fixed", "absolute"]
   );
 
+  // Top text stays fixed at 47px until it aligns with 200px from container top
   const topTextPosition = useTransform(
     scrollYProgress,
-    [0, 0.455, 1.0],
+    [0, 0.5745, 0.5745],
     ["fixed", "fixed", "absolute"]
+  );
+
+  // Top position stays at 47px when fixed, then 200px when absolute
+  const topTextTop = useTransform(
+    scrollYProgress,
+    [0, 0.5745, 0.5745],
+    ["47px", "47px", "305px"]
   );
 
   return (
@@ -46,7 +55,7 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
     >
       {/* Background Image */}
       <motion.div
-        className="relative h-[115%] w-full"
+        className="fixed top-0 left-0 h-[120vh] w-full"
         style={{ y: yPosition, scaleY }}
       >
         <Image
@@ -62,9 +71,11 @@ export default function Gallery({ project, mousePosition }: GalleryProps) {
       {/* Text overlays - revealed by previous scene's background scrolling away */}
       {/* Top Left Text */}
       <motion.div
-        className="left-[97px] top-[47px] text-white"
+        className="text-white"
         style={{
           position: topTextPosition as any,
+          top: topTextTop,
+          left: '97px',
           zIndex: 10,
           fontFamily: "Helvetica",
           fontSize: "20px",
