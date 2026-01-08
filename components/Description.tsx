@@ -43,6 +43,7 @@ export default function Description({ mousePosition, projects }: DescriptionProp
             alt="project preview"
             fill
             className="object-cover"
+            priority
           />
         </div>
         

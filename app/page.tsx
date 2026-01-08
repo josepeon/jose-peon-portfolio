@@ -48,7 +48,7 @@ export default function Home() {
 
     requestAnimationFrame(raf);
 
-    // Auto-snap to closest section after 2 seconds of inactivity
+    // Auto-snap to closest section after 1.5 seconds of inactivity
     const handleUserInteraction = () => {
       // Clear existing timeout
       if (scrollTimeoutRef.current) {
@@ -60,49 +60,51 @@ export default function Home() {
         if (!lenisRef.current) return;
         
         const windowHeight = window.innerHeight;
-        const scrollY = lenisRef.current.scroll; // Use Lenis scroll position
-        const totalSections = projects.length + 1; // +1 for Description section
+        const scrollY = lenisRef.current.scroll;
         
-        // Calculate which section we're currently in
-        const currentSectionFloat = scrollY / windowHeight;
-        const currentSection = Math.floor(currentSectionFloat);
-        const progress = currentSectionFloat - currentSection;
+        // All sections (Gallery and Description) are 120vh
+        const sectionHeight = windowHeight * 1.2;
+        const totalSections = projects.length + 1;
+        
+        // Find which section we're closest to
+        const currentSectionIndex = Math.round(scrollY / sectionHeight);
+        const targetSection = Math.max(0, Math.min(currentSectionIndex, totalSections - 1));
+        
+        // Calculate target scroll position to completely show the section
+        let targetScroll: number;
+        
+        if (targetSection === 0) {
+          targetScroll = 0;
+        } else {
+          // Section 1: 135vh, Section 2: 255vh, Section 3: 375vh, etc.
+          // Pattern: 135 + (section - 1) * 120
+          targetScroll = windowHeight * (1.35 + (targetSection - 1) * 1.2);
+        }
+        
+        const currentDistance = Math.abs(scrollY - targetScroll);
 
-        console.log('Snap check:', { scrollY, currentSection, progress });
+        console.log('Snap check:', { 
+          scrollY, 
+          sectionHeight, 
+          currentSectionIndex, 
+          targetSection, 
+          targetScroll,
+          currentDistance 
+        });
 
-        // Check if we're already snapped (within 2% threshold)
-        if (progress < 0.02 || progress > 0.98) {
+        // Only snap if we're more than 2% away from target
+        if (currentDistance < sectionHeight * 0.02) {
           console.log('Already snapped, skipping');
           return;
         }
 
-        // Determine which section to snap to
-        let targetSection: number;
-        
-        if (Math.abs(progress - 0.5) < 0.02) {
-          // Close to 50/50, choose random
-          targetSection = Math.random() < 0.5 ? currentSection : currentSection + 1;
-          console.log('50/50 split, chose:', targetSection);
-        } else if (progress < 0.5) {
-          // Closer to current section
-          targetSection = currentSection;
-        } else {
-          // Closer to next section
-          targetSection = currentSection + 1;
-        }
-
-        // Ensure we don't go beyond bounds
-        targetSection = Math.max(0, Math.min(targetSection, totalSections - 1));
-
-        // Snap to target section
-        const targetScroll = targetSection * windowHeight;
         console.log('Snapping to section:', targetSection, 'scroll:', targetScroll);
         
         lenisRef.current.scrollTo(targetScroll, {
-          duration: 1.5,
+          duration: 2.5,
           easing: (t) => 1 - Math.pow(1 - t, 3),
         });
-      }, 500);
+      }, 1500);
     };
 
     // Listen to Lenis scroll events
