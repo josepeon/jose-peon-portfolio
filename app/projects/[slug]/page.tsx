@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
-import fs from 'fs';
-import path from 'path';
+import { mediaManifest } from '@/data/media-manifest';
 import ProjectGallery from '@/components/ProjectGallery';
 
 interface ProjectMedia {
@@ -11,40 +10,28 @@ interface ProjectMedia {
 }
 
 async function getProjectMedia(imagesFolder: string): Promise<ProjectMedia[]> {
-  const folderPath = path.join(process.cwd(), 'public', 'images', 'scenes-examples', imagesFolder);
-  const R2_URL = process.env.NEXT_PUBLIC_R2_URL;
+  const R2_URL = process.env.NEXT_PUBLIC_R2_URL || 'https://pub-0b2b9e3ab0ff4761b7390f8e8e5e0286.r2.dev';
+  const files = mediaManifest[imagesFolder] || [];
 
-  try {
-    const files = fs.readdirSync(folderPath);
-    const mediaExtensions = {
-      image: ['.jpg', '.jpeg', '.png', '.gif', '.webp'],
-      video: ['.mp4', '.mov', '.webm'],
-    };
+  const mediaExtensions = {
+    image: ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.JPG', '.JPEG', '.PNG'],
+    video: ['.mp4', '.mov', '.webm'],
+  };
 
-    return files
-      .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return [...mediaExtensions.image, ...mediaExtensions.video].includes(ext);
-      })
-      .map(file => {
-        const ext = path.extname(file).toLowerCase();
-        const type: 'image' | 'video' = mediaExtensions.image.includes(ext) ? 'image' : 'video';
-        
-        // Use R2 for production/deployment, local files for development
-        const src = R2_URL 
-          ? `${R2_URL}/scenes-examples/${encodeURIComponent(imagesFolder)}/${encodeURIComponent(file)}`
-          : `/images/scenes-examples/${encodeURIComponent(imagesFolder)}/${encodeURIComponent(file)}`;
-        
-        return {
-          src,
-          type,
-          name: file,
-        };
-      })
-      .sort((a, b) => a.name.localeCompare(b.name));
-  } catch {
-    return [];
-  }
+  return files
+    .map(file => {
+      const ext = file.slice(file.lastIndexOf('.')).toLowerCase();
+      const type: 'image' | 'video' = mediaExtensions.image.includes(ext) ? 'image' : 'video';
+      
+      const src = `${R2_URL}/scenes-examples/${encodeURIComponent(imagesFolder)}/${encodeURIComponent(file)}`;
+      
+      return {
+        src,
+        type,
+        name: file,
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 interface PageProps {
