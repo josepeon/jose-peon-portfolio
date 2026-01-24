@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# wrangler
+.wrangler
+
 # large media files (too big for Vercel deployment)
 public/images/scenes-examples/
 
