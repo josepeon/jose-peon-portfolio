@@ -1,0 +1,2 @@
+# Exclude large media files from Vercel deployment
+public/images/scenes-examples/
