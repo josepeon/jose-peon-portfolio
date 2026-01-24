@@ -12,6 +12,7 @@ interface ProjectMedia {
 
 async function getProjectMedia(imagesFolder: string): Promise<ProjectMedia[]> {
   const folderPath = path.join(process.cwd(), 'public', 'images', 'scenes-examples', imagesFolder);
+  const R2_URL = process.env.NEXT_PUBLIC_R2_URL;
 
   try {
     const files = fs.readdirSync(folderPath);
@@ -28,8 +29,14 @@ async function getProjectMedia(imagesFolder: string): Promise<ProjectMedia[]> {
       .map(file => {
         const ext = path.extname(file).toLowerCase();
         const type: 'image' | 'video' = mediaExtensions.image.includes(ext) ? 'image' : 'video';
+        
+        // Use R2 for production/deployment, local files for development
+        const src = R2_URL 
+          ? `${R2_URL}/scenes-examples/${encodeURIComponent(imagesFolder)}/${encodeURIComponent(file)}`
+          : `/images/scenes-examples/${encodeURIComponent(imagesFolder)}/${encodeURIComponent(file)}`;
+        
         return {
-          src: `/images/scenes-examples/${encodeURIComponent(imagesFolder)}/${encodeURIComponent(file)}`,
+          src,
           type,
           name: file,
         };
