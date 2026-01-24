@@ -10,4 +10,7 @@ export interface Project {
   topLeftText: string[];
   bottomLeftText: string;
   year: string;
+  slug: string;
+  imagesFolder?: string;
+  heroMedia?: string;
 }

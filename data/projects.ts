@@ -13,6 +13,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', 'STRATEGY', 'PRODUCTION', 'PHOTOGRAPHY', '3D', 'ADVERTISING', 'BRANDING'],
     bottomLeftText: 'NOOON SHOWROOM',
     year: '2026',
+    slug: 'nooon-showroom',
+    imagesFolder: 'NOOON 2026 SEASONAL',
+    heroMedia: '00.png',
   },
   {
     id: '2',
@@ -26,6 +29,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', '', 'PRODUCTION', 'PHOTOGRAPHY', '3D'],
     bottomLeftText: 'BADSON LIGHT',
     year: '2025',
+    slug: 'badson-light',
+    imagesFolder: 'BADSON 2',
+    heroMedia: 'OXYGENLIGHT.mp4',
   },
   {
     id: '3',
@@ -39,6 +45,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', 'STRATEGY', 'PRODUCTION', 'PHOTOGRAPHY', '3D', 'ADVERTISING', 'BRANDING'],
     bottomLeftText: 'NOOON 2025 SEASONAL',
     year: '2025',
+    slug: 'nooon-2025-seasonal',
+    imagesFolder: 'NOOON 2025 SEASONAL',
+    heroMedia: '241115-Nooon-Editorial-0378.jpg',
   },
   {
     id: '4',
@@ -51,6 +60,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', '', 'PRODUCTION', 'PHOTOGRAPHY', '3D'],
     bottomLeftText: 'BADSON OXYGEN',
     year: '2024',
+    slug: 'badson-oxygen',
+    imagesFolder: 'BADSON',
+    heroMedia: 'FRAMES MOSS0001_2.mp4',
   },
   {
     id: '5',
@@ -64,6 +76,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', '', 'PRODUCTION', '', '3D', 'ADVERTISING'],
     bottomLeftText: 'HELIOT EMIL',
     year: '2024',
+    slug: 'heliot-emil',
+    imagesFolder: 'HELIOT EMIL',
+    heroMedia: 'BAGFINALRENDER.mp4',
   },
   {
     id: '6',
@@ -77,6 +92,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', '', 'PRODUCTION', 'PHOTOGRAPHY', '3D'],
     bottomLeftText: 'BADSON OXYGEN',
     year: '2024',
+    slug: 'badson-oxygen-2',
+    imagesFolder: 'BADSON',
+    heroMedia: 'OXYGENLIGHT.mp4',
   },
   {
     id: '7',
@@ -90,6 +108,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', 'STRATEGY', 'PRODUCTION', 'PHOTOGRAPHY', '3D', 'ADVERTISING', 'BRANDING'],
     bottomLeftText: 'NOOON 2025 SEASONAL',
     year: '2025',
+    slug: 'nooon-2025-seasonal-2',
+    imagesFolder: 'NOOON 2025 SEASONAL',
+    heroMedia: '241115-Nooon-Editorial-0655.jpg',
   },
   {
     id: '8',
@@ -103,6 +124,9 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', '', '', '', '3D', 'ADVERTISING'],
     bottomLeftText: 'GOAT SHOWROOM',
     year: '2023',
+    slug: 'goat-showroom',
+    imagesFolder: 'GOAT',
+    heroMedia: '02 POSED.mp4',
   },
 ];
 

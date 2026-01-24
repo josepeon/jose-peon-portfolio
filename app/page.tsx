@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { useMotionValue, useSpring } from 'framer-motion';
+import { useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
@@ -121,7 +121,7 @@ export default function Home() {
   return (
     <main onMouseMove={handleMouseMove} className="relative cursor-none">
       {projects.map((project, i) => (
-        <Gallery mousePosition={mousePosition} project={project} index={i} key={i} />
+        <Gallery mousePosition={mousePosition} project={project} key={i} />
       ))}
       <Description mousePosition={mousePosition} projects={projects} />
     </main>

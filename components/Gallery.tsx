@@ -1,6 +1,7 @@
 "use client";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { Project } from "@/types/project";
 
@@ -10,10 +11,9 @@ interface GalleryProps {
     x: MotionValue<number>;
     y: MotionValue<number>;
   };
-  index: number;
 }
 
-export default function Gallery({ project, mousePosition, index }: GalleryProps) {
+export default function Gallery({ project, mousePosition }: GalleryProps) {
   const { x, y } = mousePosition;
   const sceneNumber = project.handle.split("_")[1];
   const container = useRef(null);
@@ -47,9 +47,11 @@ export default function Gallery({ project, mousePosition, index }: GalleryProps)
   );
 
   return (
-    <div
+    <Link
+      href={`/projects/${project.slug}`}
+      scroll={false}
       ref={container}
-      className="relative h-[120vh] w-full overflow-hidden"
+      className="relative h-[120vh] w-full overflow-hidden block"
       style={{ clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" }}
     >
       {/* Background Image */}
@@ -147,6 +149,6 @@ export default function Gallery({ project, mousePosition, index }: GalleryProps)
           ENTER PROJECT
         </div>
       </motion.div>
-    </div>
+    </Link>
   );
 }
