@@ -30,7 +30,7 @@ export default function ProjectGallery({ project, media, heroMedia }: ProjectGal
   // Text stays fixed until we scroll past the hero section
   const textPosition = useTransform(
     scrollYProgress,
-    [0, 0.71, 0.71],
+    [0, 0.62, 0.62],
     ["fixed", "fixed", "absolute"]
   );
 
@@ -90,6 +90,9 @@ export default function ProjectGallery({ project, media, heroMedia }: ProjectGal
                 height={1080}
                 className="w-full h-auto"
                 priority
+                quality={80}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDBAMBAAAAAAAAAAAAAQIDAAQRBRIhMQYTQWH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABkRAAIDAQAAAAAAAAAAAAAAAAECABEhMf/aAAwDAQACEQMRAD8AzOC+1TTNPiiiuJI7WVmd4w5CuTxkj7Sqb/UNQumDXV5cXBXgGWVnx/dKUqllZMXZ//Z"
               />
             )}
           </div>
@@ -178,8 +181,11 @@ export default function ProjectGallery({ project, media, heroMedia }: ProjectGal
                         height={1080}
                         className={row.length === 2 ? 'w-full h-full object-cover' : 'w-full h-auto'}
                         sizes={row.length === 2 ? '50vw' : '100vw'}
-                        loading="eager"
-                        priority={rowIndex < 3}
+                        priority={rowIndex < 2}
+                        loading={rowIndex < 2 ? 'eager' : 'lazy'}
+                        quality={75}
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDBAMBAAAAAAAAAAAAAQIDAAQRBRIhMQYTQWH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABkRAAIDAQAAAAAAAAAAAAAAAAECABEhMf/aAAwDAQACEQMRAD8AzOC+1TTNPiiiuJI7WVmd4w5CuTxkj7Sqb/UNQumDXV5cXBXgGWVnx/dKUqllZMXZ//Z"
                       />
                     ) : (
                       <video
@@ -189,7 +195,7 @@ export default function ProjectGallery({ project, media, heroMedia }: ProjectGal
                         loop
                         playsInline
                         autoPlay
-                        preload="auto"
+                        preload={rowIndex < 2 ? 'auto' : 'metadata'}
                       />
                     )}
                   </div>
