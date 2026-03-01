@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { useSpring } from 'framer-motion';
 import Lenis from 'lenis';
-import Gallery from '@/components/Gallery';
+// import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
 import { projects } from '@/data/projects';
 
@@ -120,9 +120,9 @@ export default function Home() {
 
   return (
     <main onMouseMove={handleMouseMove} className="relative cursor-none">
-      {projects.map((project, i) => (
+      {/* {projects.map((project, i) => (
         <Gallery mousePosition={mousePosition} project={project} key={i} />
-      ))}
+      ))} */}
       <Description mousePosition={mousePosition} projects={projects} />
     </main>
   );
