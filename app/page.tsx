@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useSpring } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import Lenis from 'lenis';
 // import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
@@ -29,6 +30,19 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const hasMovedRef = useRef(false);
   const [cursorVisible, setCursorVisible] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [exitSlug, setExitSlug] = useState('');
+  const router = useRouter();
+
+  const handleProjectClick = (slug: string) => {
+    if (isExiting) return;
+    setIsExiting(true);
+    setExitSlug(slug);
+  };
+
+  const handleExitComplete = () => {
+    router.push(`/projects/${exitSlug}`);
+  };
 
   const mousePosition = {
     x: mouseX,
@@ -179,8 +193,16 @@ export default function Home() {
           opacity: cursorVisible ? 1 : 0,
         }}
       />
-      <Description mousePosition={mousePosition} cursorPosition={{ x: cursorX, y: cursorY }} projects={projects} cursorVisible={cursorVisible} />
-      <Footer />
+      <Description
+        mousePosition={mousePosition}
+        cursorPosition={{ x: cursorX, y: cursorY }}
+        projects={projects}
+        cursorVisible={cursorVisible}
+        isExiting={isExiting}
+        onProjectClick={handleProjectClick}
+        onExitComplete={handleExitComplete}
+      />
+      <Footer isExiting={isExiting} />
     </main>
   );
 }

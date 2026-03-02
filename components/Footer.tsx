@@ -6,7 +6,7 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-export default function Footer() {
+export default function Footer({ isExiting }: { isExiting?: boolean }) {
   const footerRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
@@ -17,7 +17,7 @@ export default function Footer() {
     const elements = footerRef.current.querySelectorAll('.footer-text');
 
     // Set initial state - hidden
-    gsap.set(elements, { opacity: 0 });
+    gsap.set(elements, { visibility: 'visible', opacity: 0 });
 
     // Animate each footer element with masked reveal
     elements.forEach((el) => {
@@ -39,6 +39,20 @@ export default function Footer() {
       });
     });
   }, []);
+
+  // Exit animation: reverse the masked reveal
+  useEffect(() => {
+    if (!isExiting || !footerRef.current) return;
+
+    const lines = footerRef.current.querySelectorAll('.footer-line');
+    gsap.to(lines, {
+      yPercent: 100,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.05,
+      ease: 'power3.in',
+    });
+  }, [isExiting]);
 
   return (
     <footer
@@ -63,6 +77,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
+          style={{ visibility: 'hidden' }}
         >
           INSTAGRAM
         </a>
@@ -71,6 +86,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
+          style={{ visibility: 'hidden' }}
         >
           LINKEDIN
         </a>
@@ -79,6 +95,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
+          style={{ visibility: 'hidden' }}
         >
           GITHUB
         </a>
@@ -92,10 +109,11 @@ export default function Footer() {
           alignItems: 'center',
         }}
       >
-        <span className="footer-text" style={{ lineHeight: '1', marginBottom: '4px' }}>JOSE PEON</span>
+        <span className="footer-text" style={{ lineHeight: '1', marginBottom: '4px', visibility: 'hidden' }}>JOSE PEON</span>
         <a
           href="mailto:JOSE@OH.SYSTEMS"
           className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
+          style={{ visibility: 'hidden' }}
         >
           JOSE@OH.SYSTEMS
         </a>
@@ -103,7 +121,7 @@ export default function Footer() {
 
       {/* Right - Title */}
       <div style={{ textAlign: 'right' }}>
-        <span className="footer-text">AI ENGINEER</span>
+        <span className="footer-text" style={{ visibility: 'hidden' }}>AI ENGINEER</span>
       </div>
     </footer>
   );

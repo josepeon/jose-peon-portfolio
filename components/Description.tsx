@@ -19,9 +19,12 @@ interface DescriptionProps {
   };
   projects: Project[];
   cursorVisible: boolean;
+  isExiting: boolean;
+  onProjectClick: (slug: string) => void;
+  onExitComplete: () => void;
 }
 
-export default function Description({ mousePosition, cursorPosition, projects, cursorVisible }: DescriptionProps) {
+export default function Description({ mousePosition, cursorPosition, projects, cursorVisible, isExiting, onProjectClick, onExitComplete }: DescriptionProps) {
   const [index, setIndex] = useState(0);
   const [lastImageIndex, setLastImageIndex] = useState(0);
   const { x, y } = mousePosition;
@@ -62,7 +65,7 @@ export default function Description({ mousePosition, cursorPosition, projects, c
     const titles = titlesContainerRef.current.querySelectorAll('.project-title');
 
     // Set initial state - hidden
-    gsap.set(titles, { opacity: 0 });
+    gsap.set(titles, { visibility: 'visible', opacity: 0 });
 
     // Animate each title with rolling 3D effect, staggered
     titles.forEach((title, i) => {
@@ -99,15 +102,45 @@ export default function Description({ mousePosition, cursorPosition, projects, c
     });
   }, []);
 
+  // Exit animation: reverse rolling effect
+  useEffect(() => {
+    if (!isExiting || !titlesContainerRef.current) return;
+
+    const titles = titlesContainerRef.current.querySelectorAll('.project-title');
+    const depth = -window.innerWidth / 8;
+
+    const tl = gsap.timeline({
+      onComplete: onExitComplete,
+    });
+
+    // Animate titles out in reverse order (last title first)
+    titles.forEach((title, i) => {
+      const chars = title.querySelectorAll('.rolling-char');
+      tl.to(
+        chars,
+        {
+          rotationX: 90,
+          opacity: 0,
+          transformOrigin: `50% 50% ${depth}px`,
+          stagger: 0.02,
+          duration: 0.5,
+          ease: 'power3.in',
+        },
+        i * 0.08 // stagger between titles
+      );
+    });
+  }, [isExiting, onExitComplete]);
+
   return (
     <div className="relative flex-1 w-full" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
       <div ref={titlesContainerRef} className="absolute flex h-full w-full flex-col items-center justify-center z-10">
-        {projects.map(({ title }, i) => (
+        {projects.map(({ title, slug }, i) => (
           <p
             onMouseOver={() => handleHover(i)}
+            onClick={() => onProjectClick(slug)}
             key={`p${i}`}
             className="project-title m-0 cursor-none text-[5.4vw] uppercase leading-none text-white"
-            // style={{ textShadow: '0 4px 8px rgba(0, 0, 0, 0.9), 0 8px 20px rgba(0, 0, 0, 0.7)' }}
+            style={{ visibility: 'hidden' }}
           >
             {title}
           </p>
@@ -126,8 +159,8 @@ export default function Description({ mousePosition, cursorPosition, projects, c
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: cursorVisible && hasImage ? 0.95 : 0,
-            scale: cursorVisible && hasImage ? 1 : 0,
+            opacity: cursorVisible && hasImage && !isExiting ? 0.95 : 0,
+            scale: cursorVisible && hasImage && !isExiting ? 1 : 0,
           }}
           transition={{
             duration: 1.5,
