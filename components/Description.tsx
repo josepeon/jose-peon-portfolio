@@ -27,13 +27,14 @@ export default function Description({ mousePosition, projects, cursorVisible }: 
   };
 
   return (
-    <div className="relative h-screen w-full" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
+    <div className="relative flex-1 w-full" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
       <div className="absolute flex h-full w-full flex-col items-center justify-center z-10">
         {projects.map(({ title }, i) => (
           <p
             onMouseOver={() => handleHover(i)}
             key={`p${i}`}
-            className="m-0 cursor-none text-[4.5vw] uppercase leading-none text-white"
+            className="m-0 cursor-none text-[5.4vw] uppercase leading-none text-white"
+            style={{ textShadow: '0 0.15em 0.3em rgba(0, 0, 0, 0.5)' }}
           >
             {title}
           </p>
@@ -56,7 +57,7 @@ export default function Description({ mousePosition, projects, cursorVisible }: 
           ease: [0.4, 0, 0.2, 1],
         }}
       >
-        <div className="h-[24vw] w-[20vw] rounded-[1.2vw] overflow-hidden relative">
+        <div className="h-[40.3vw] w-[33.6vw] rounded-[2vw] overflow-hidden relative">
           <Image
             src={`/images/cursors/cursor_${projects[lastImageIndex].handle.split('_')[1]}.jpg`}
             alt="project preview"
@@ -73,7 +74,7 @@ export default function Description({ mousePosition, projects, cursorVisible }: 
             fontFamily: 'Helvetica', 
             fontSize: '16px', 
             fontWeight: 400,
-            width: '20vw',
+            width: '33.6vw',
             zIndex: 9999,
           }}
         >

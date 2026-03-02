@@ -4,6 +4,7 @@ import { motion, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 // import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
+import Footer from '@/components/Footer';
 import { projects } from '@/data/projects';
 
 const spring = {
@@ -39,17 +40,21 @@ export default function Home() {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // Cursor image dimensions: 20vw x 24vw + ~40px for text
-    const imgW = vw * 0.20;
-    const imgH = vw * 0.24 + 40;
+    // Cursor image dimensions: 33.6vw x 40.3vw + ~40px for text
+    const imgW = vw * 0.336;
+    const imgH = vw * 0.403 + 40;
+
+    // Account for footer height
+    const footer = document.querySelector('footer');
+    const footerH = footer ? footer.offsetHeight : 0;
 
     // Desired offset from mouse
     const offsetX = clientX - (vw / 2) * 0.25;
     const offsetY = clientY - (vw / 2) * 0.3;
 
-    // Clamp so the image stays within viewport
+    // Clamp so the image stays within viewport and above footer
     const clampedX = Math.max(0, Math.min(offsetX, vw - imgW));
-    const clampedY = Math.max(0, Math.min(offsetY, vh - imgH));
+    const clampedY = Math.max(0, Math.min(offsetY, vh - footerH - imgH));
 
     // On first move, jump instantly to position (no spring animation from 0,0)
     if (!hasMovedRef.current) {
@@ -158,7 +163,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main onMouseMove={handleMouseMove} className="relative cursor-none">
+    <main onMouseMove={handleMouseMove} className="relative cursor-none h-screen flex flex-col overflow-hidden">
       {/* Custom circle cursor */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999]"
@@ -175,6 +180,7 @@ export default function Home() {
         }}
       />
       <Description mousePosition={mousePosition} projects={projects} cursorVisible={cursorVisible} />
+      <Footer />
     </main>
   );
 }
