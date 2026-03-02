@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useRef } from 'react';
-import { useSpring } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 // import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
@@ -12,11 +12,22 @@ const spring = {
   mass: 0.1,
 };
 
+// Slower, lazier spring for the cursor image
+const imageSpring = {
+  stiffness: 50,
+  damping: 20,
+  mass: 0.5,
+};
+
 export default function Home() {
-  const mouseX = useSpring(0, spring);
-  const mouseY = useSpring(0, spring);
+  const mouseX = useSpring(0, imageSpring);
+  const mouseY = useSpring(0, imageSpring);
+  const cursorX = useSpring(0, spring);
+  const cursorY = useSpring(0, spring);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const hasMovedRef = useRef(false);
+  const [cursorVisible, setCursorVisible] = useState(false);
 
   const mousePosition = {
     x: mouseX,
@@ -25,10 +36,38 @@ export default function Home() {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
-    const targetX = clientX - (window.innerWidth / 2) * 0.25;
-    const targetY = clientY - (window.innerWidth / 2) * 0.3;
-    mouseX.set(targetX);
-    mouseY.set(targetY);
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // Cursor image dimensions: 20vw x 24vw + ~40px for text
+    const imgW = vw * 0.20;
+    const imgH = vw * 0.24 + 40;
+
+    // Desired offset from mouse
+    const offsetX = clientX - (vw / 2) * 0.25;
+    const offsetY = clientY - (vw / 2) * 0.3;
+
+    // Clamp so the image stays within viewport
+    const clampedX = Math.max(0, Math.min(offsetX, vw - imgW));
+    const clampedY = Math.max(0, Math.min(offsetY, vh - imgH));
+
+    // On first move, jump instantly to position (no spring animation from 0,0)
+    if (!hasMovedRef.current) {
+      hasMovedRef.current = true;
+      setCursorVisible(true);
+      mouseX.jump(clampedX);
+      mouseY.jump(clampedY);
+      cursorX.jump(clientX);
+      cursorY.jump(clientY);
+      return;
+    }
+
+    mouseX.set(clampedX);
+    mouseY.set(clampedY);
+
+    // Circle cursor follows actual mouse
+    cursorX.set(clientX);
+    cursorY.set(clientY);
   };
 
   useEffect(() => {
@@ -120,10 +159,22 @@ export default function Home() {
 
   return (
     <main onMouseMove={handleMouseMove} className="relative cursor-none">
-      {/* {projects.map((project, i) => (
-        <Gallery mousePosition={mousePosition} project={project} key={i} />
-      ))} */}
-      <Description mousePosition={mousePosition} projects={projects} />
+      {/* Custom circle cursor */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          width: 12,
+          height: 12,
+          borderRadius: '50%',
+          border: '1px solid white',
+          translateX: '-50%',
+          translateY: '-50%',
+          opacity: cursorVisible ? 1 : 0,
+        }}
+      />
+      <Description mousePosition={mousePosition} projects={projects} cursorVisible={cursorVisible} />
     </main>
   );
 }

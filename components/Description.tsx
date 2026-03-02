@@ -10,20 +10,30 @@ interface DescriptionProps {
     y: MotionValue<number>;
   };
   projects: Project[];
+  cursorVisible: boolean;
 }
 
-export default function Description({ mousePosition, projects }: DescriptionProps) {
+export default function Description({ mousePosition, projects, cursorVisible }: DescriptionProps) {
   const [index, setIndex] = useState(0);
+  const [lastImageIndex, setLastImageIndex] = useState(0);
   const { x, y } = mousePosition;
+  const hasImage = projects[index]?.slug !== 'resume';
+
+  const handleHover = (i: number) => {
+    setIndex(i);
+    if (projects[i]?.slug !== 'resume') {
+      setLastImageIndex(i);
+    }
+  };
 
   return (
-    <div className="relative h-[120vh] w-full" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
+    <div className="relative h-screen w-full" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)' }}>
       <div className="absolute flex h-full w-full flex-col items-center justify-center z-10">
         {projects.map(({ title }, i) => (
           <p
-            onMouseOver={() => setIndex(i)}
+            onMouseOver={() => handleHover(i)}
             key={`p${i}`}
-            className="m-0 cursor-default text-[7vw] uppercase leading-none text-white"
+            className="m-0 cursor-none text-[4.5vw] uppercase leading-none text-white"
           >
             {title}
           </p>
@@ -36,10 +46,19 @@ export default function Description({ mousePosition, projects }: DescriptionProp
           x,
           y,
         }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{
+          opacity: cursorVisible && hasImage ? 0.95 : 0,
+          scale: cursorVisible && hasImage ? 1 : 0,
+        }}
+        transition={{
+          duration: 1.5,
+          ease: [0.4, 0, 0.2, 1],
+        }}
       >
-        <div className="h-[30vw] w-[25vw] rounded-[1.5vw] overflow-hidden relative">
+        <div className="h-[24vw] w-[20vw] rounded-[1.2vw] overflow-hidden relative">
           <Image
-            src={`/images/cursors/cursor_${projects[index].handle.split('_')[1]}.jpg`}
+            src={`/images/cursors/cursor_${projects[lastImageIndex].handle.split('_')[1]}.jpg`}
             alt="project preview"
             fill
             className="object-cover"
@@ -54,7 +73,7 @@ export default function Description({ mousePosition, projects }: DescriptionProp
             fontFamily: 'Helvetica', 
             fontSize: '16px', 
             fontWeight: 400,
-            width: '25vw',
+            width: '20vw',
             zIndex: 9999,
           }}
         >

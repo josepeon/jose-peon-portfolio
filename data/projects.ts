@@ -3,7 +3,7 @@ import { Project } from '@/types/project';
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
+    title: 'OH SYSTEMS',
     description: 'A full-featured e-commerce platform with shopping cart, payment integration, and admin dashboard.',
     image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop',
     technologies: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
@@ -19,7 +19,7 @@ export const projects: Project[] = [
   },
   {
     id: '2',
-    title: 'Task Management App',
+    title: 'NOOON SHOWROOM',
     description: 'Collaborative task management tool with real-time updates, team workspaces, and project tracking.',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
     technologies: ['React', 'Firebase', 'Tailwind CSS'],
@@ -35,7 +35,7 @@ export const projects: Project[] = [
   },
   {
     id: '3',
-    title: 'Weather Dashboard',
+    title: 'O-OH COMPANION',
     description: 'Beautiful weather application with forecasts, interactive maps, and location-based alerts.',
     image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=600&fit=crop',
     technologies: ['Vue.js', 'OpenWeather API', 'Chart.js'],
@@ -51,7 +51,7 @@ export const projects: Project[] = [
   },
   {
     id: '4',
-    title: 'Social Media Analytics',
+    title: 'DIGITAL TWIN',
     description: 'Comprehensive analytics platform for tracking social media engagement and growth metrics.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
     technologies: ['Python', 'Django', 'React', 'D3.js'],
@@ -66,7 +66,7 @@ export const projects: Project[] = [
   },
   {
     id: '5',
-    title: 'Fitness Tracker',
+    title: 'SELF-IMPROVING AGENT',
     description: 'Mobile-first fitness tracking app with workout logging, progress charts, and goal setting.',
     image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&h=600&fit=crop',
     technologies: ['React Native', 'Node.js', 'MongoDB'],
@@ -82,7 +82,7 @@ export const projects: Project[] = [
   },
   {
     id: '6',
-    title: 'Recipe Sharing Platform',
+    title: 'MULTI-AGENT PLANNER',
     description: 'Community-driven recipe platform where users can share, rate, and discover delicious recipes.',
     image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop',
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'AWS S3'],
@@ -98,7 +98,7 @@ export const projects: Project[] = [
   },
   {
     id: '7',
-    title: 'AI Content Generator',
+    title: 'FASHION ITEM GENERATOR',
     description: 'AI-powered content creation tool for blog posts, social media, and marketing copy.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
     technologies: ['Next.js', 'OpenAI', 'Tailwind CSS', 'Vercel'],
@@ -114,7 +114,7 @@ export const projects: Project[] = [
   },
   {
     id: '8',
-    title: 'Music Streaming App',
+    title: '3D SCAN PROCESSOR',
     description: 'Modern music streaming platform with playlists, recommendations, and social features.',
     image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
@@ -127,6 +127,18 @@ export const projects: Project[] = [
     slug: 'goat-showroom',
     imagesFolder: 'GOAT',
     heroMedia: '02 POSED.mp4',
+  },
+  {
+    id: '9',
+    title: 'RESUME',
+    description: '',
+    image: '',
+    technologies: [],
+    handle: 'scene_9',
+    topLeftText: [],
+    bottomLeftText: 'RESUME',
+    year: '2026',
+    slug: 'resume',
   },
 ];
 
