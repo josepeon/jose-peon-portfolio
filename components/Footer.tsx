@@ -1,11 +1,51 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
+
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!footerRef.current || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const elements = footerRef.current.querySelectorAll('.footer-text');
+
+    // Set initial state - hidden
+    gsap.set(elements, { opacity: 0 });
+
+    // Animate each footer element with masked reveal
+    elements.forEach((el) => {
+      SplitText.create(el, {
+        type: 'words,lines',
+        linesClass: 'footer-line',
+        mask: 'lines',
+        onSplit: (self) => {
+          gsap.set(el, { opacity: 1 });
+          gsap.from(self.lines, {
+            duration: 0.8,
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.1,
+            ease: 'expo.out',
+            delay: 1.5, // Start after title animations
+          });
+        },
+      });
+    });
+  }, []);
+
   return (
     <footer
+      ref={footerRef}
       style={{
         width: '100%',
-        backgroundColor: '#0A0A0A',
+        backgroundColor: '#000000',
         fontFamily: 'Helvetica, Arial, sans-serif',
         fontSize: '22px',
         fontWeight: 400,
@@ -22,7 +62,7 @@ export default function Footer() {
           href="https://instagram.com/josepeoon"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white hover:opacity-70 transition-opacity cursor-none"
+          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
         >
           INSTAGRAM
         </a>
@@ -30,7 +70,7 @@ export default function Footer() {
           href="https://linkedin.com/in/josepeoon"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white hover:opacity-70 transition-opacity cursor-none"
+          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
         >
           LINKEDIN
         </a>
@@ -38,7 +78,7 @@ export default function Footer() {
           href="https://github.com/josepeon"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white hover:opacity-70 transition-opacity cursor-none"
+          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
         >
           GITHUB
         </a>
@@ -52,10 +92,10 @@ export default function Footer() {
           alignItems: 'center',
         }}
       >
-        <span style={{ lineHeight: '1', marginBottom: '4px' }}>JOSE PEON</span>
+        <span className="footer-text" style={{ lineHeight: '1', marginBottom: '4px' }}>JOSE PEON</span>
         <a
           href="mailto:JOSE@OH.SYSTEMS"
-          className="text-white hover:opacity-70 transition-opacity cursor-none"
+          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
         >
           JOSE@OH.SYSTEMS
         </a>
@@ -63,7 +103,7 @@ export default function Footer() {
 
       {/* Right - Title */}
       <div style={{ textAlign: 'right' }}>
-        <span>AI ENGINEER</span>
+        <span className="footer-text">AI ENGINEER</span>
       </div>
     </footer>
   );

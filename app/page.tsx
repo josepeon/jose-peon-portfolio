@@ -179,7 +179,7 @@ export default function Home() {
           opacity: cursorVisible ? 1 : 0,
         }}
       />
-      <Description mousePosition={mousePosition} projects={projects} cursorVisible={cursorVisible} />
+      <Description mousePosition={mousePosition} cursorPosition={{ x: cursorX, y: cursorY }} projects={projects} cursorVisible={cursorVisible} />
       <Footer />
     </main>
   );

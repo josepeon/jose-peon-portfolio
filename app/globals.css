@@ -21,3 +21,11 @@ body {
 * {
   cursor: none !important;
 }
+
+.rolling-char {
+  display: inline-block;
+}
+
+.footer-line {
+  overflow: hidden;
+}
