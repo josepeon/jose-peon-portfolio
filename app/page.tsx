@@ -1,18 +1,13 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { useSpring } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Lenis from 'lenis';
-// import Gallery from '@/components/Gallery';
 import Description from '@/components/Description';
 import Footer from '@/components/Footer';
 import { projects } from '@/data/projects';
-
-const spring = {
-  stiffness: 150,
-  damping: 15,
-  mass: 0.1,
-};
+import gsap from 'gsap';
 
 // Slower, lazier spring for the cursor image
 const imageSpring = {
@@ -24,69 +19,146 @@ const imageSpring = {
 export default function Home() {
   const mouseX = useSpring(0, imageSpring);
   const mouseY = useSpring(0, imageSpring);
-  const cursorX = useSpring(0, spring);
-  const cursorY = useSpring(0, spring);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const hasMovedRef = useRef(false);
   const [cursorVisible, setCursorVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  const [exitSlug, setExitSlug] = useState('');
+  const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [lastImageIndex, setLastImageIndex] = useState(0);
+  const cursorImageRef = useRef<HTMLDivElement>(null);
+  const isExitingRef = useRef(false);
+  const exitSlugRef = useRef('');
+  const cursorAnimDone = useRef(false);
+  const titlesAnimDone = useRef(false);
   const router = useRouter();
 
-  const handleProjectClick = (slug: string) => {
-    if (isExiting) return;
+  const hasImage = projects[hoveredIndex]?.slug !== 'resume';
+
+  // Navigate only when BOTH title exit and cursor image animations are done
+  const tryNavigate = useCallback(() => {
+    if (cursorAnimDone.current && titlesAnimDone.current) {
+      router.push(`/projects/${exitSlugRef.current}`);
+    }
+  }, [router]);
+
+  const handleHover = useCallback((i: number) => {
+    if (isExitingRef.current) return; // Don't change image during exit
+    setHoveredIndex(i);
+    if (projects[i]?.slug !== 'resume') {
+      setLastImageIndex(i);
+    }
+  }, []);
+
+  const handleProjectClick = useCallback((slug: string, _projectIndex: number) => {
+    if (isExitingRef.current) return;
+    isExitingRef.current = true;
+    exitSlugRef.current = slug;
     setIsExiting(true);
-    setExitSlug(slug);
-  };
 
-  const handleExitComplete = () => {
-    router.push(`/projects/${exitSlug}`);
-  };
+    const el = cursorImageRef.current;
+    if (!el) return;
 
-  const mousePosition = {
-    x: mouseX,
-    y: mouseY,
-  };
+    // Calculate target: match ProjectPage layout exactly
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    const imgH = vw * 0.403;
+    const targetX = 60;
+    const targetY = (vh - imgH) / 2;
+
+    // Animate from current position to target — overwrite auto handles in-progress tweens gracefully
+    gsap.to(el, {
+      x: targetX,
+      y: targetY,
+      opacity: 1,
+      duration: 0.9,
+      ease: 'power3.inOut',
+      overwrite: 'auto',
+      onComplete: () => {
+        cursorAnimDone.current = true;
+        tryNavigate();
+      },
+    });
+
+    // Fade out "ENTER PROJECT" text
+    const textEl = el.querySelector('.enter-project-text');
+    if (textEl) {
+      gsap.to(textEl, { opacity: 0, duration: 0.3, ease: 'power2.out' });
+    }
+  }, [tryNavigate]);
+
+  const handleTitlesExitComplete = useCallback(() => {
+    titlesAnimDone.current = true;
+    tryNavigate();
+  }, [tryNavigate]);
+
+  // Initialize cursor image as hidden and offscreen until first mouse move
+  useEffect(() => {
+    const el = cursorImageRef.current;
+    if (!el) return;
+    gsap.set(el, { opacity: 0, x: -9999, y: -9999 });
+  }, []);
+
+  // Subscribe to spring values — drive cursor image position via GSAP (no framer-motion on the element)
+  useEffect(() => {
+    const el = cursorImageRef.current;
+    if (!el) return;
+
+    const setX = gsap.quickSetter(el, 'x', 'px');
+    const setY = gsap.quickSetter(el, 'y', 'px');
+
+    const onChangeX = (v: number) => { if (!isExitingRef.current) setX(v); };
+    const onChangeY = (v: number) => { if (!isExitingRef.current) setY(v); };
+
+    const unsubX = mouseX.on('change', onChangeX);
+    const unsubY = mouseY.on('change', onChangeY);
+
+    return () => { unsubX(); unsubY(); };
+  }, [mouseX, mouseY]);
+
+  // Animate cursor image visibility based on hover state (opacity only, no scale)
+  useEffect(() => {
+    const el = cursorImageRef.current;
+    if (!el || isExitingRef.current) return;
+
+    const shouldShow = cursorVisible && hasImage;
+    gsap.to(el, {
+      opacity: shouldShow ? 0.85 : 0,
+      duration: shouldShow ? 0.6 : 0.3,
+      ease: 'power2.out',
+      overwrite: 'auto',
+    });
+  }, [cursorVisible, hasImage]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (isExitingRef.current) return;
+
     const { clientX, clientY } = e;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // Cursor image dimensions: 33.6vw x 40.3vw + ~40px for text
     const imgW = vw * 0.336;
     const imgH = vw * 0.403 + 40;
 
-    // Account for footer height
     const footer = document.querySelector('footer');
     const footerH = footer ? footer.offsetHeight : 0;
 
-    // Desired offset from mouse
     const offsetX = clientX - (vw / 2) * 0.25;
     const offsetY = clientY - (vw / 2) * 0.3;
 
-    // Clamp so the image stays within viewport and above footer
     const clampedX = Math.max(0, Math.min(offsetX, vw - imgW));
     const clampedY = Math.max(0, Math.min(offsetY, vh - footerH - imgH));
 
-    // On first move, jump instantly to position (no spring animation from 0,0)
     if (!hasMovedRef.current) {
       hasMovedRef.current = true;
       setCursorVisible(true);
       mouseX.jump(clampedX);
       mouseY.jump(clampedY);
-      cursorX.jump(clientX);
-      cursorY.jump(clientY);
       return;
     }
 
     mouseX.set(clampedX);
     mouseY.set(clampedY);
-
-    // Circle cursor follows actual mouse
-    cursorX.set(clientX);
-    cursorY.set(clientY);
   };
 
   useEffect(() => {
@@ -106,58 +178,35 @@ export default function Home() {
 
     requestAnimationFrame(raf);
 
-    // Auto-snap to closest section after 1.5 seconds of inactivity
     const handleUserInteraction = () => {
-      // Clear existing timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
 
-      // Set new timeout for 1.5 seconds
       scrollTimeoutRef.current = setTimeout(() => {
         if (!lenisRef.current) return;
-        
+
         const windowHeight = window.innerHeight;
         const scrollY = lenisRef.current.scroll;
-        
-        // All sections (Gallery and Description) are 120vh
+
         const sectionHeight = windowHeight * 1.2;
         const totalSections = projects.length + 1;
-        
-        // Find which section we're closest to
+
         const currentSectionIndex = Math.round(scrollY / sectionHeight);
         const targetSection = Math.max(0, Math.min(currentSectionIndex, totalSections - 1));
-        
-        // Calculate target scroll position to completely show the section
+
         let targetScroll: number;
-        
+
         if (targetSection === 0) {
           targetScroll = 0;
         } else {
-          // Section 1: 135vh, Section 2: 255vh, Section 3: 375vh, etc.
-          // Pattern: 135 + (section - 1) * 120
           targetScroll = windowHeight * (1.35 + (targetSection - 1) * 1.2);
         }
-        
+
         const currentDistance = Math.abs(scrollY - targetScroll);
 
-        console.log('Snap check:', { 
-          scrollY, 
-          sectionHeight, 
-          currentSectionIndex, 
-          targetSection, 
-          targetScroll,
-          currentDistance 
-        });
+        if (currentDistance < sectionHeight * 0.02) return;
 
-        // Only snap if we're more than 2% away from target
-        if (currentDistance < sectionHeight * 0.02) {
-          console.log('Already snapped, skipping');
-          return;
-        }
-
-        console.log('Snapping to section:', targetSection, 'scroll:', targetScroll);
-        
         lenisRef.current.scrollTo(targetScroll, {
           duration: 2.5,
           easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -165,7 +214,6 @@ export default function Home() {
       }, 1500);
     };
 
-    // Listen to Lenis scroll events
     lenis.on('scroll', handleUserInteraction);
 
     return () => {
@@ -176,33 +224,49 @@ export default function Home() {
     };
   }, []);
 
+  // Image source for cursor
+  const imageNumber = projects[lastImageIndex]?.handle?.split('_')[1];
+
   return (
     <main onMouseMove={handleMouseMove} className="relative cursor-none h-screen flex flex-col overflow-hidden">
-      {/* Custom circle cursor */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          width: 12,
-          height: 12,
-          borderRadius: '50%',
-          border: '1px solid white',
-          translateX: '-50%',
-          translateY: '-50%',
-          opacity: cursorVisible ? 1 : 0,
-        }}
-      />
       <Description
-        mousePosition={mousePosition}
-        cursorPosition={{ x: cursorX, y: cursorY }}
         projects={projects}
-        cursorVisible={cursorVisible}
         isExiting={isExiting}
         onProjectClick={handleProjectClick}
-        onExitComplete={handleExitComplete}
+        onTitlesExitComplete={handleTitlesExitComplete}
+        onHover={handleHover}
       />
       <Footer isExiting={isExiting} />
+
+      {/* Cursor image — plain div driven entirely by GSAP, no framer-motion conflict */}
+      <div
+        ref={cursorImageRef}
+        className="fixed top-0 left-0 pointer-events-none"
+        style={{ zIndex: 50, willChange: 'transform, opacity' }}
+      >
+        <div className="h-[40.3vw] w-[33.6vw] rounded-[2vw] overflow-hidden relative">
+          {imageNumber && (
+            <Image
+              src={`/images/cursors/cursor_${imageNumber}.jpg`}
+              alt="project preview"
+              fill
+              className="object-cover"
+              priority
+            />
+          )}
+        </div>
+        <div
+          className="enter-project-text text-white text-right mt-4 pr-2"
+          style={{
+            fontFamily: 'Helvetica',
+            fontSize: '16px',
+            fontWeight: 400,
+            width: '33.6vw',
+          }}
+        >
+          ENTER PROJECT
+        </div>
+      </div>
     </main>
   );
 }

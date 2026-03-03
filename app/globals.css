@@ -18,7 +18,33 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-* {
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+html, html * {
+  cursor: none !important;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Extra specificity for interactive elements and pseudo-elements */
+a, button, input, select, textarea, label,
+[role="button"], [tabindex],
+a *, button *, input *, select *, textarea *, label *,
+*::placeholder, *::selection,
+*::-webkit-scrollbar, *::-webkit-scrollbar-thumb, *::-webkit-scrollbar-track {
+  cursor: none !important;
+}
+
+/* Override any hover cursor changes */
+*:hover, *:focus, *:active, *:visited {
   cursor: none !important;
 }
 

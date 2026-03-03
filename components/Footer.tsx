@@ -76,8 +76,10 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           href="https://instagram.com/josepeoon"
           target="_blank"
           rel="noopener noreferrer"
-          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
-          style={{ visibility: 'hidden' }}
+          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          style={{ visibility: 'hidden', opacity: 0.4 }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
         >
           INSTAGRAM
         </a>
@@ -85,8 +87,10 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           href="https://linkedin.com/in/josepeoon"
           target="_blank"
           rel="noopener noreferrer"
-          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
-          style={{ visibility: 'hidden' }}
+          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          style={{ visibility: 'hidden', opacity: 0.4 }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
         >
           LINKEDIN
         </a>
@@ -94,8 +98,10 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           href="https://github.com/josepeon"
           target="_blank"
           rel="noopener noreferrer"
-          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
-          style={{ visibility: 'hidden' }}
+          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          style={{ visibility: 'hidden', opacity: 0.4 }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
         >
           GITHUB
         </a>
@@ -112,8 +118,10 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         <span className="footer-text" style={{ lineHeight: '1', marginBottom: '4px', visibility: 'hidden' }}>JOSE PEON</span>
         <a
           href="mailto:JOSE@OH.SYSTEMS"
-          className="footer-text text-white hover:opacity-70 transition-opacity cursor-none"
-          style={{ visibility: 'hidden' }}
+          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          style={{ visibility: 'hidden', opacity: 0.4 }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
         >
           JOSE@OH.SYSTEMS
         </a>
