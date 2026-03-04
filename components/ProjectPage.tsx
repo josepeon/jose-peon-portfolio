@@ -146,9 +146,26 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   return (
     <div
       ref={containerRef}
-      className="h-screen w-full flex overflow-hidden"
+      className="h-screen w-full flex overflow-hidden relative"
       style={{ backgroundColor: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', cursor: 'none' }}
     >
+      {/* Back button — top-left corner */}
+      <button
+        onClick={handleBack}
+        className="back-link animate-in text-white text-[22px] uppercase hover:opacity-70 transition-opacity"
+        style={{ position: 'absolute', top: '40px', left: '60px', background: 'none', border: 'none', fontFamily: 'inherit', visibility: 'hidden', cursor: 'none', zIndex: 10 }}
+      >
+        ← BACK
+      </button>
+
+      {/* Bottom-left project name */}
+      <span
+        className="section-label animate-in text-white text-[16px] uppercase opacity-40"
+        style={{ position: 'absolute', bottom: '40px', left: '60px', visibility: 'hidden', zIndex: 10 }}
+      >
+        {project.bottomLeftText}
+      </span>
+
       {/* Left side: Project image */}
       <div className="flex-shrink-0 flex flex-col justify-center" style={{ padding: '40px 0 40px 60px' }}>
         {hasProjectImage && (
@@ -170,15 +187,9 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
       {/* Right side: Project content */}
       <div className="flex-1 flex flex-col justify-between" style={{ padding: '40px 60px 40px 48px' }}>
-        {/* Top: Back + Year */}
-        <div className="flex justify-between items-start">
-          <button
-            onClick={handleBack}
-            className="back-link animate-in text-white text-[22px] uppercase hover:opacity-70 transition-opacity"
-            style={{ background: 'none', border: 'none', fontFamily: 'inherit', visibility: 'hidden', cursor: 'none' }}
-          >
-            ← BACK
-          </button>
+        {/* Top: Year */}
+        <div className="flex justify-end items-start">
+
           <span className="section-label animate-in text-white text-[18px] uppercase opacity-50" style={{ visibility: 'hidden' }}>
             {project.year}
           </span>
@@ -236,11 +247,8 @@ export default function ProjectPage({ project }: ProjectPageProps) {
           )}
         </div>
 
-        {/* Bottom: Project label + Name */}
-        <div className="flex justify-between items-end">
-          <span className="section-label animate-in text-white text-[16px] uppercase opacity-40" style={{ visibility: 'hidden' }}>
-            {project.bottomLeftText}
-          </span>
+        {/* Bottom: Name */}
+        <div className="flex justify-end items-end">
           <span className="section-label animate-in text-white text-[16px] uppercase opacity-40" style={{ visibility: 'hidden' }}>
             JOSE PEON · AI ENGINEER
           </span>

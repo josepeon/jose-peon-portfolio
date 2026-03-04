@@ -79,7 +79,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           className="footer-text text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4 }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
           INSTAGRAM
         </a>
@@ -90,7 +90,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           className="footer-text text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4 }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
           LINKEDIN
         </a>
@@ -101,7 +101,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           className="footer-text text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4 }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
           GITHUB
         </a>
@@ -121,7 +121,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
           className="footer-text text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4 }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
           JOSE@OH.SYSTEMS
         </a>
