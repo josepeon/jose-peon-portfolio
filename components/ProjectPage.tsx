@@ -1,11 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Project } from '@/types/project';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+
+const SplineEmbed = dynamic(() => import('@/components/SplineEmbed'), { ssr: false });
 
 gsap.registerPlugin(SplitText);
 
@@ -18,6 +21,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   const imageRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
   const router = useRouter();
+  const [iframeActive, setIframeActive] = useState(false);
 
   const imageNumber = project.handle.split('_')[1];
   const hasProjectImage = project.slug !== 'resume' && imageNumber;
@@ -33,7 +37,14 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
     const tl = gsap.timeline();
 
-    // 1. Image: already at full opacity from cursor transition — no animation needed
+    // 1. Image/embed frame: scale up + fade in (reverse of exit animation)
+    if (imageRef.current && (project.embedUrl || project.splineScene)) {
+      tl.fromTo(imageRef.current,
+        { opacity: 0, scale: 0, transformOrigin: 'center center' },
+        { opacity: 1, scale: 1, transformOrigin: 'center center', duration: 0.5, ease: 'power3.out' },
+        0
+      );
+    }
 
     // 2. Title: rolling 3D chars
     const titleEl = containerRef.current.querySelector('.project-page-title');
@@ -166,9 +177,89 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         {project.bottomLeftText}
       </span>
 
-      {/* Left side: Project image */}
+      {/* Left side: Project image, Spline scene, or embed */}
       <div className="flex-shrink-0 flex flex-col justify-center" style={{ padding: '40px 0 40px 60px' }}>
-        {hasProjectImage && (
+        {project.splineScene ? (
+          <div>
+            <div
+              ref={imageRef}
+              className="rounded-[2vw] overflow-hidden relative"
+              style={{ width: '33.6vw', height: '40.3vw', willChange: 'transform, opacity', background: '#ffffff', opacity: 0, transform: 'scale(0)' }}
+            >
+              <SplineEmbed
+                scene={project.splineScene}
+                active={iframeActive}
+                onActivate={() => setIframeActive(true)}
+                onDeactivate={() => setIframeActive(false)}
+              />
+            </div>
+            <div className="flex justify-between items-center" style={{ marginTop: '14px', paddingRight: '4px' }}>
+              <span
+                className="section-label animate-in text-white text-[12px] uppercase tracking-[0.15em] opacity-30"
+                style={{ visibility: 'hidden' }}
+              >
+                {iframeActive ? 'Interactive' : 'Click to interact'}
+              </span>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="section-label animate-in text-white text-[13px] uppercase tracking-[0.15em] transition-opacity"
+                  style={{ visibility: 'hidden', cursor: 'none', opacity: 0.4 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+                >
+                  Open in new tab ↗
+                </a>
+              )}
+            </div>
+          </div>
+        ) : project.embedUrl ? (
+          <div>
+            <div
+              ref={imageRef}
+              className="rounded-[2vw] overflow-hidden relative"
+              style={{ width: '33.6vw', height: '40.3vw', willChange: 'transform, opacity', opacity: 0, transform: 'scale(0)' }}
+              onMouseLeave={() => setIframeActive(false)}
+            >
+              <iframe
+                src={project.embedUrl}
+                title={project.title}
+                className="w-full h-full border-0"
+                style={{ pointerEvents: iframeActive ? 'auto' : 'none' }}
+                allow="autoplay; fullscreen"
+              />
+              {/* Overlay: tracks cursor, click to activate iframe */}
+              {!iframeActive && (
+                <div
+                  className="absolute inset-0"
+                  style={{ cursor: 'none', zIndex: 2 }}
+                  onClick={() => setIframeActive(true)}
+                />
+              )}
+            </div>
+            <div className="flex justify-between items-center" style={{ marginTop: '14px', paddingRight: '4px' }}>
+              <span
+                className="section-label animate-in text-white text-[12px] uppercase tracking-[0.15em] opacity-30"
+                style={{ visibility: 'hidden' }}
+              >
+                {iframeActive ? 'Interactive' : 'Click to interact'}
+              </span>
+              <a
+                href={project.embedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="section-label animate-in text-white text-[13px] uppercase tracking-[0.15em] transition-opacity"
+                style={{ visibility: 'hidden', cursor: 'none', opacity: 0.4 }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+              >
+                Open in new tab ↗
+              </a>
+            </div>
+          </div>
+        ) : hasProjectImage ? (
           <div
             ref={imageRef}
             className="rounded-[2vw] overflow-hidden relative"
@@ -182,7 +273,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
               priority
             />
           </div>
-        )}
+        ) : null}
       </div>
 
       {/* Right side: Project content */}

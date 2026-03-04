@@ -6,6 +6,8 @@ export interface Project {
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
+  embedUrl?: string;
+  splineScene?: string;
   handle: string;
   topLeftText: string[];
   bottomLeftText: string;

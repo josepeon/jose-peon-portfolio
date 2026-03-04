@@ -4,11 +4,12 @@ export const projects: Project[] = [
   {
     id: '1',
     title: 'OH SYSTEMS',
-    description: 'A spatial commerce runtime that makes immersive 3D experiences transactional and intelligent. Built the backend systems, designed the website with interactive Spline 3D elements, and led the technical strategy for the OH platform — integrating Shopify Storefront API for in-experience purchases, Arcware Core for cloud streaming, and the O-OH AI assistant. Served as team lead and drove the architecture for the commerce runtime, session management, and cross-surface identity layer.',
+    description: 'A spatial commerce runtime that makes immersive 3D experiences transactional and intelligent. Built the backend systems, designed the website with interactive Spline 3D elements, and led the technical strategy for the OH platform, integrating Shopify Storefront API for in-experience purchases, Arcware Core for cloud streaming, and the O-OH AI assistant. Served as team lead and drove the architecture for the commerce runtime, session management, and cross-surface identity layer.',
     image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop',
     technologies: ['Spline 3D', 'Shopify Storefront API', 'Arcware Core', 'Next.js', 'Unreal Engine 5', 'WebSocket', 'UMG Widgets'],
     githubUrl: 'https://github.com/oh-systems/oh-sss',
     liveUrl: 'https://o-h.systems',
+    embedUrl: 'https://o-h.systems',
     handle: 'scene_1',
     topLeftText: ['BACKEND ENGINEERING', 'SYSTEM ARCHITECTURE', '3D WEB INTEGRATION', 'TECHNICAL STRATEGY', 'TEAM LEAD'],
     bottomLeftText: 'OH SYSTEMS',
@@ -20,7 +21,7 @@ export const projects: Project[] = [
   {
     id: '2',
     title: 'NOOON SHOWROOM',
-    description: 'A multiplayer spatial commerce experience built in Unreal Engine where users explore a virtual fashion showroom and make real purchases without leaving the 3D environment. Led creative direction, interior design, asset creation, and team coordination. Designed the spatial layout, installation concepts, and the entire visual identity of the experience. Commerce flow enables item inspection with 3D rotation, cart management, and Shopify WebView checkout — all inside Unreal. Supports 7 avatars, 9 outfit sets, 8 emotes, and cross-platform distribution via native downloads and browser-based cloud streaming.',
+    description: 'A multiplayer spatial commerce experience built in Unreal Engine where users explore a virtual fashion showroom and make real purchases without leaving the 3D environment. Led creative direction, interior design, asset creation, and team coordination. Designed the spatial layout, installation concepts, and the entire visual identity of the experience. Commerce flow enables item inspection with 3D rotation, cart management, and Shopify WebView checkout, all inside Unreal. Supports 7 avatars, 9 outfit sets, 8 emotes, and cross-platform distribution via native downloads and browser-based cloud streaming.',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
     technologies: ['Unreal Engine 5', 'Shopify Storefront API', 'Arcware Core', 'UMG UI', 'Dedicated Multiplayer Server', 'WebView'],
     githubUrl: 'https://github.com/oh-systems/oh-sss',
@@ -35,10 +36,11 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'O-OH COMPANION',
-    description: 'AI-powered voice companion backend with a full speech-to-speech pipeline: audio capture → Whisper ASR (Groq) → Llama 3.3 70B inference (~0.3s) → Microsoft Edge TTS → streamed audio response. Engineered a 5-layer persistent memory system (Working → Episodic → Semantic → Emotional → Storage) backed by Redis, with auto-consolidation after 20 messages. Built partial audio streaming for ultra-low latency voice (50-70% faster time-to-first-audio), 39 API endpoints across 9 categories, three WebSocket channels for real-time text/voice/partial streaming, and automatic model fallback between 70B and 8B.',
+    description: 'AI-powered voice companion backend with a full speech-to-speech pipeline: audio capture to Whisper ASR (Groq) to Llama 3.3 70B inference (around 0.3s) to Microsoft Edge TTS to streamed audio response. Engineered a 5-layer persistent memory system (Working, Episodic, Semantic, Emotional, Storage) backed by Redis, with auto-consolidation after 20 messages. Built partial audio streaming for ultra-low latency voice (50-70% faster time-to-first-audio), 39 API endpoints across 9 categories, three WebSocket channels for real-time text/voice/partial streaming, and automatic model fallback between 70B and 8B.',
     image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=600&fit=crop',
     technologies: ['Python', 'FastAPI', 'Groq API', 'Llama 3.3 70B', 'Whisper Large V3', 'Edge TTS', 'Redis', 'WebSocket', 'Silero VAD', 'Sentry'],
     githubUrl: 'https://github.com/oh-systems/oh-companion-backend',
+    splineScene: '/spline/o-oh/scene.splinecode',
     handle: 'scene_3',
     topLeftText: ['BACKEND ARCHITECTURE', 'VOICE PIPELINE', 'MEMORY SYSTEM DESIGN', 'API ENGINEERING', 'REAL-TIME STREAMING'],
     bottomLeftText: 'O-OH COMPANION',
@@ -50,7 +52,7 @@ export const projects: Project[] = [
   {
     id: '4',
     title: 'DIGITAL TWIN',
-    description: 'An AI digital twin that thinks, writes, and speaks as a real person — combining RAG-powered personality retrieval with Groq Llama 3.3 70B and dual ElevenLabs voice clones (English and Spanish). Built a multi-source data ingestion pipeline processing messages from ChatGPT, Instagram, WhatsApp, iMessage, and email with quality filtering and near-duplicate detection (0.95 cosine threshold). ChromaDB vector store with sentence-transformer embeddings retrieves real messages as few-shot examples to prime the LLM. Automatic language and register detection routes between casual, professional, and family response styles with distinct Cuban Spanish dialect support.',
+    description: 'An AI digital twin that thinks, writes, and speaks as a real person, combining RAG-powered personality retrieval with Groq Llama 3.3 70B and dual ElevenLabs voice clones (English and Spanish). Built a multi-source data ingestion pipeline processing messages from ChatGPT, Instagram, WhatsApp, iMessage, and email with quality filtering and near-duplicate detection (0.95 cosine threshold). ChromaDB vector store with sentence-transformer embeddings retrieves real messages as few-shot examples to prime the LLM. Automatic language and register detection routes between casual, professional, and family response styles with distinct Cuban Spanish dialect support.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
     technologies: ['Python', 'FastAPI', 'Groq API', 'Llama 3.3 70B', 'ChromaDB', 'Sentence-Transformers', 'ElevenLabs API', 'RAG', 'Railway'],
     githubUrl: 'https://github.com/josepeon/digital-twin',
@@ -65,7 +67,7 @@ export const projects: Project[] = [
   {
     id: '5',
     title: 'SELF-IMPROVING AGENT',
-    description: 'A self-improvement infrastructure that fine-tunes a local Apple Silicon MLX model using LoRA through a self-play feedback loop — the local model generates multi-turn conversations while Groq 70B judges quality (score ≥ 7/10 kept as training data). Built the full pipeline: provider abstraction layer with intelligent routing by complexity analysis, ChromaDB-powered RAG over 1,211 document chunks, model registry with version lifecycle management (candidate → staging → production → retired), and an evaluation harness with golden-test YAML rubrics. Training runs ~7h on M3 Max with 6.7 GB peak memory, achieving 0.09 final loss. 92%+ test coverage across 291 tests.',
+    description: 'A self-improvement infrastructure that fine-tunes a local Apple Silicon MLX model using LoRA through a self-play feedback loop. The local model generates multi-turn conversations while Groq 70B judges quality (score 7/10 or higher kept as training data). Built the full pipeline: provider abstraction layer with intelligent routing by complexity analysis, ChromaDB-powered RAG over 1,211 document chunks, model registry with version lifecycle management (candidate, staging, production, retired), and an evaluation harness with golden-test YAML rubrics. Training runs around 7 hours on M3 Max with 6.7 GB peak memory, achieving 0.09 final loss. 92%+ test coverage across 291 tests.',
     image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&h=600&fit=crop',
     technologies: ['Python', 'MLX', 'LoRA', 'Groq API', 'Llama 3.3 70B', 'ChromaDB', 'Sentence-Transformers', 'Pytest', 'GitHub Actions', 'Pydantic'],
     githubUrl: 'https://github.com/oh-systems/self-improving-agent',
@@ -80,7 +82,7 @@ export const projects: Project[] = [
   {
     id: '6',
     title: 'MULTI-AGENT PLANNER',
-    description: 'An AI-powered multi-agent system orchestrating 8 specialized agents to transform natural language project descriptions into production-ready, tested, documented Python code. Pipeline flows through Planner → Architect → Developer (with up to 3 Critic-feedback retries) → QA → Integrator → TestGenerator + Documenter (parallel). Built sandboxed execution with three isolation strategies (RestrictedPython, Docker, Subprocess), a unified LLM abstraction supporting 5 providers (Groq, Gemini, Ollama, OpenAI, OpenRouter), shared AST context tracking across tasks, and a Flask web UI with tabbed output and ZIP download. Free by default via Groq.',
+    description: 'An AI-powered multi-agent system orchestrating 8 specialized agents to transform natural language project descriptions into production-ready, tested, documented Python code. Pipeline flows through Planner, Architect, Developer (with up to 3 Critic-feedback retries), QA, Integrator, then TestGenerator and Documenter in parallel. Built sandboxed execution with three isolation strategies (RestrictedPython, Docker, Subprocess), a unified LLM abstraction supporting 5 providers (Groq, Gemini, Ollama, OpenAI, OpenRouter), shared AST context tracking across tasks, and a Flask web UI with tabbed output and ZIP download. Free by default via Groq.',
     image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop',
     technologies: ['Python', 'Groq API', 'Llama 3.3 70B', 'Flask', 'RestrictedPython', 'Docker', 'AST Analysis', 'Pytest', 'GitHub Actions'],
     githubUrl: 'https://github.com/josepeon/multi_agent_planner',
@@ -95,7 +97,7 @@ export const projects: Project[] = [
   {
     id: '7',
     title: 'FASHION ITEM GENERATOR',
-    description: 'A deep learning toolkit for Fashion-MNIST classification (95.1% accuracy CNN, 1.2M params) and conditional VAE-based clothing image generation with latent space interpolation and style transfer. CNN architecture uses 3 conv blocks (64→128→256) with batch normalization and test-time augmentation. The conditional VAE (3.7M params) encodes 784-dim inputs with one-hot labels into a 32-dim latent space using residual blocks with LayerNorm, enabling spherical linear interpolation (SLERP) between class embeddings for smooth transitions. Includes REST API and interactive Streamlit demo with 4 modes: Classify, Generate, Interpolate (GIF export), and Style Transfer.',
+    description: 'A deep learning toolkit for Fashion-MNIST classification (95.1% accuracy CNN, 1.2M params) and conditional VAE-based clothing image generation with latent space interpolation and style transfer. CNN architecture uses 3 conv blocks (64, 128, 256 channels) with batch normalization and test-time augmentation. The conditional VAE (3.7M params) encodes 784-dim inputs with one-hot labels into a 32-dim latent space using residual blocks with LayerNorm, enabling spherical linear interpolation (SLERP) between class embeddings for smooth transitions. Includes REST API and interactive Streamlit demo with 4 modes: Classify, Generate, Interpolate (GIF export), and Style Transfer.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
     technologies: ['Python', 'PyTorch', 'FastAPI', 'Streamlit', 'CNN', 'Conditional VAE', 'NumPy', 'MPS / CUDA'],
     githubUrl: 'https://github.com/josepeon/fashion_item_generator',

@@ -56,8 +56,9 @@ export default function Home() {
     exitSlugRef.current = slug;
     setIsExiting(true);
 
-    // Resume has no cursor image — skip image animation, navigate after titles exit
-    if (slug === 'resume') {
+    // Resume, embed, and Spline projects have no cursor image — skip image animation
+    const clickedProject = projects.find(p => p.slug === slug);
+    if (slug === 'resume' || clickedProject?.embedUrl || clickedProject?.splineScene) {
       cursorAnimDone.current = true;
       // Hide cursor image immediately
       const el = cursorImageRef.current;

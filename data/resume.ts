@@ -9,7 +9,7 @@ export const resume = {
   portfolio: 'josepeon.co',
 
   summary:
-    'AI Engineer with production experience across voice AI pipelines, LLM fine-tuning, multi-agent orchestration, retrieval-augmented generation, and deep learning. Built end-to-end systems from model training through API deployment — including a self-play LoRA fine-tuning loop on Apple Silicon, a 5-layer memory voice companion, a RAG-powered digital twin with dual voice clones, and an 8-agent code generation pipeline. Background in systems engineering, computational design, real-time 3D, and digital product architecture.',
+    'AI Engineer with production experience across voice AI pipelines, LLM fine-tuning, multi-agent orchestration, retrieval-augmented generation, and deep learning. Built end-to-end systems from model training through API deployment, including a self-play LoRA fine-tuning loop on Apple Silicon, a 5-layer memory voice companion, a RAG-powered digital twin with dual voice clones, and an 8-agent code generation pipeline. Background in systems engineering, computational design, real-time 3D, and digital product architecture.',
 
   skills: {
     'Languages': ['Python', 'TypeScript', 'JavaScript'],
@@ -67,8 +67,8 @@ export const resume = {
       period: '2024 – Present',
       location: 'New York, NY',
       highlights: [
-        'Architected and built the O-OH Companion backend — a full speech-to-speech AI pipeline (Whisper ASR → Llama 3.3 70B → Edge TTS) with 5-layer persistent memory (Redis), partial audio streaming (50-70% faster TTFA), 39 API endpoints, and three WebSocket channels.',
-        'Designed the Self-Improving Agent infrastructure — a self-play LoRA fine-tuning loop on Apple Silicon (MLX) where the local model generates conversations and Groq 70B judges quality, with model registry lifecycle management and 92%+ test coverage across 291 tests.',
+        'Architected and built the O-OH Companion backend: a full speech-to-speech AI pipeline (Whisper ASR, Llama 3.3 70B, Edge TTS) with 5-layer persistent memory (Redis), partial audio streaming (50-70% faster TTFA), 39 API endpoints, and three WebSocket channels.',
+        'Designed the Self-Improving Agent infrastructure: a self-play LoRA fine-tuning loop on Apple Silicon (MLX) where the local model generates conversations and Groq 70B judges quality, with model registry lifecycle management and 92%+ test coverage across 291 tests.',
         'Built the OH website backend and integrated Spline 3D interactive elements, Arcware cloud streaming for Unreal Engine experiences, and Shopify Storefront API for spatial commerce.',
         'Led technical strategy and team coordination across 5+ contributors for the OH platform launch, including the Nooon Showroom multiplayer spatial commerce experience in Unreal Engine.',
       ],
@@ -79,7 +79,7 @@ export const resume = {
       period: '2024 – Present',
       location: 'New York, NY',
       highlights: [
-        'Built AI-powered internal tools to automate documentation, workflow organization, and system logic — replacing manual processes across product lifecycle management.',
+        'Built AI-powered internal tools to automate documentation, workflow organization, and system logic, replacing manual processes across product lifecycle management.',
         'Engineered 3D-first garment simulation pipelines using CLO3D, reducing physical sampling iterations and enabling rapid digital prototyping before production.',
         'Designed real-time rendering pipelines (Cinema 4D + Octane) and immersive Unreal Engine environments for interactive product presentation and spatial commerce.',
         'Developed technical specifications and automated coordination systems between digital design tools and manufacturing partners.',
@@ -102,7 +102,7 @@ export const resume = {
       period: 'Sep 2023 – Apr 2025',
       location: 'New York, NY',
       highlights: [
-        'Developed automated 3D rendering and asset generation pipelines using Cinema 4D, Octane, and CLO3D — reducing production time by 60%.',
+        'Developed automated 3D rendering and asset generation pipelines using Cinema 4D, Octane, and CLO3D, reducing production time by 60%.',
         'Built computational design workflows for campaign production, integrating real-time 3D visualization with digital product development.',
         'Led end-to-end digital product architecture from concept through deployment, merging creative direction with technical systems.',
       ],
@@ -152,7 +152,7 @@ export const resume = {
       name: 'Multi-Agent Planner',
       tech: 'Python · Groq 70B · Flask · RestrictedPython · Docker · AST',
       description:
-        '8-agent pipeline (Planner → Architect → Developer → QA → Integrator → TestGenerator + Documenter) that transforms natural language into production Python code. Sandboxed execution with 3 isolation strategies, 5 LLM providers, critic-feedback retries, and web UI with ZIP export.',
+        '8-agent pipeline (Planner, Architect, Developer, QA, Integrator, TestGenerator and Documenter) that transforms natural language into production Python code. Sandboxed execution with 3 isolation strategies, 5 LLM providers, critic-feedback retries, and web UI with ZIP export.',
     },
     {
       name: 'Fashion Item Generator',
@@ -177,11 +177,11 @@ export const resume = {
   education: [
     {
       degree: 'BFA Fashion Design',
-      institution: 'Parsons School of Design — The New School',
+      institution: 'Parsons School of Design, The New School',
       period: '2022 – 2026',
     },
     {
-      degree: 'AI Engineering — Professional Certificate',
+      degree: 'AI Engineering Professional Certificate',
       institution: 'IBM · Deep Learning Specialization · Applied AI',
       period: '2024 – 2026',
     },

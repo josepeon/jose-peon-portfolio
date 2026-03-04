@@ -22,8 +22,16 @@ body {
   cursor: none !important;
 }
 
+iframe {
+  cursor: default !important;
+}
+
 html, html * {
   cursor: none !important;
+}
+
+html iframe {
+  cursor: default !important;
 }
 
 html {
