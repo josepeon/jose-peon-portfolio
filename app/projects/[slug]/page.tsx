@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import ProjectPageComponent from '@/components/ProjectPage';
+import ResumePageComponent from '@/components/ResumePage';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -12,6 +13,10 @@ export default async function ProjectRoute({ params }: PageProps) {
 
   if (!project) {
     notFound();
+  }
+
+  if (slug === 'resume') {
+    return <ResumePageComponent />;
   }
 
   return <ProjectPageComponent project={project} />;

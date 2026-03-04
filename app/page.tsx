@@ -56,6 +56,15 @@ export default function Home() {
     exitSlugRef.current = slug;
     setIsExiting(true);
 
+    // Resume has no cursor image — skip image animation, navigate after titles exit
+    if (slug === 'resume') {
+      cursorAnimDone.current = true;
+      // Hide cursor image immediately
+      const el = cursorImageRef.current;
+      if (el) gsap.to(el, { opacity: 0, duration: 0.3, ease: 'power2.out' });
+      return;
+    }
+
     const el = cursorImageRef.current;
     if (!el) return;
 
