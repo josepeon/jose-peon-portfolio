@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Project Showcase",
+  title: "Jose Peon",
   description: "A showcase of amazing projects",
 };
 
