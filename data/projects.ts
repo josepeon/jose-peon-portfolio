@@ -56,6 +56,7 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
     technologies: ['Python', 'FastAPI', 'Groq API', 'Llama 3.3 70B', 'ChromaDB', 'Sentence-Transformers', 'ElevenLabs API', 'RAG', 'Railway'],
     githubUrl: 'https://github.com/josepeon/digital-twin',
+    digitalTwin: true,
     handle: 'scene_4',
     topLeftText: ['RAG ENGINEERING', 'VOICE CLONING', 'DATA PIPELINE', 'PERSONALITY MODELING', 'NLP'],
     bottomLeftText: 'DIGITAL TWIN',

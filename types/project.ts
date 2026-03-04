@@ -8,6 +8,7 @@ export interface Project {
   liveUrl?: string;
   embedUrl?: string;
   splineScene?: string;
+  digitalTwin?: boolean;
   handle: string;
   topLeftText: string[];
   bottomLeftText: string;

@@ -9,6 +9,7 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
 const SplineEmbed = dynamic(() => import('@/components/SplineEmbed'), { ssr: false });
+const DigitalTwinChat = dynamic(() => import('@/components/DigitalTwinChat'), { ssr: false });
 
 gsap.registerPlugin(SplitText);
 
@@ -157,9 +158,11 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   return (
     <div
       ref={containerRef}
-      className="h-screen w-full flex overflow-hidden relative"
-      style={{ backgroundColor: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', cursor: 'none' }}
+      className={`w-full ${project.digitalTwin ? 'min-h-screen' : 'h-screen'} relative`}
+      style={{ backgroundColor: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', cursor: 'none', overflowY: project.digitalTwin ? 'auto' : 'hidden', overflowX: 'hidden' }}
     >
+      {/* Top section: existing project layout */}
+      <div className="h-screen w-full flex relative" style={{ flexShrink: 0 }}>
       {/* Back button — top-left corner */}
       <button
         onClick={handleBack}
@@ -345,6 +348,16 @@ export default function ProjectPage({ project }: ProjectPageProps) {
           </span>
         </div>
       </div>
+      </div>
+
+      {/* Digital Twin chat section */}
+      {project.digitalTwin && (
+        <div style={{ padding: '0 60px 80px 60px' }}>
+          <div style={{ maxWidth: '100%' }}>
+            <DigitalTwinChat />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
