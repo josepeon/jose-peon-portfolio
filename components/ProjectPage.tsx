@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
 const SplineEmbed = dynamic(() => import('@/components/SplineEmbed'), { ssr: false });
-const DigitalTwinChat = dynamic(() => import('@/components/DigitalTwinChat'), { ssr: false });
+const TalkToJose = dynamic(() => import('@/components/TalkToJose'), { ssr: false });
 
 gsap.registerPlugin(SplitText);
 
@@ -158,8 +158,8 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   return (
     <div
       ref={containerRef}
-      className={`w-full ${project.digitalTwin ? 'min-h-screen' : 'h-screen'} relative`}
-      style={{ backgroundColor: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', cursor: 'none', overflowY: project.digitalTwin ? 'auto' : 'hidden', overflowX: 'hidden' }}
+      className="w-full h-screen relative"
+      style={{ backgroundColor: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', cursor: 'none', overflow: 'hidden' }}
     >
       {/* Top section: existing project layout */}
       <div className="h-screen w-full flex relative" style={{ flexShrink: 0 }}>
@@ -178,6 +178,22 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         style={{ position: 'absolute', bottom: '40px', left: '60px', visibility: 'hidden', zIndex: 10 }}
       >
         {project.bottomLeftText}
+      </span>
+
+      {/* Top-right year */}
+      <span
+        className="section-label animate-in text-white text-[18px] uppercase opacity-50"
+        style={{ position: 'absolute', top: '40px', right: '60px', visibility: 'hidden', zIndex: 10 }}
+      >
+        {project.year}
+      </span>
+
+      {/* Bottom-right name */}
+      <span
+        className="section-label animate-in text-white text-[16px] uppercase opacity-40"
+        style={{ position: 'absolute', bottom: '40px', right: '60px', visibility: 'hidden', zIndex: 10 }}
+      >
+        JOSE PEON · AI ENGINEER
       </span>
 
       {/* Left side: Project image, Spline scene, or embed */}
@@ -279,18 +295,9 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         ) : null}
       </div>
 
-      {/* Right side: Project content */}
-      <div className="flex-1 flex flex-col justify-between" style={{ padding: '40px 60px 40px 48px' }}>
-        {/* Top: Year */}
-        <div className="flex justify-end items-start">
-
-          <span className="section-label animate-in text-white text-[18px] uppercase opacity-50" style={{ visibility: 'hidden' }}>
-            {project.year}
-          </span>
-        </div>
-
-        {/* Middle: Title + Content */}
-        <div className="flex-1 flex flex-col justify-center" style={{ gap: '36px' }}>
+      {/* Middle: Project content */}
+      <div className="flex-1 flex flex-col justify-center" style={{ padding: project.digitalTwin ? '40px 0 40px 48px' : '40px 60px 40px 48px', maxWidth: project.digitalTwin ? '32vw' : undefined }}>
+        <div className="flex flex-col justify-center" style={{ gap: '36px' }}>
           <h1
             className="project-page-title animate-in text-white uppercase leading-none"
             style={{ fontSize: '3vw', margin: 0, visibility: 'hidden' }}
@@ -340,24 +347,17 @@ export default function ProjectPage({ project }: ProjectPageProps) {
             </div>
           )}
         </div>
-
-        {/* Bottom: Name */}
-        <div className="flex justify-end items-end">
-          <span className="section-label animate-in text-white text-[16px] uppercase opacity-40" style={{ visibility: 'hidden' }}>
-            JOSE PEON · AI ENGINEER
-          </span>
-        </div>
-      </div>
       </div>
 
-      {/* Digital Twin chat section */}
+      {/* Right column: Voice interface (digital twin only) */}
       {project.digitalTwin && (
-        <div style={{ padding: '0 60px 80px 60px' }}>
-          <div style={{ maxWidth: '100%' }}>
-            <DigitalTwinChat />
-          </div>
+        <div className="flex flex-col justify-center items-center" style={{ padding: '40px 60px 40px 0', width: '22vw', flexShrink: 0 }}>
+          <TalkToJose />
         </div>
       )}
+      </div>
+
+
     </div>
   );
 }
