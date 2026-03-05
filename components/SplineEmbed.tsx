@@ -8,15 +8,17 @@ interface SplineEmbedProps {
   active: boolean;
   onActivate: () => void;
   onDeactivate: () => void;
+  onLoaded?: () => void;
 }
 
-export default function SplineEmbed({ scene, active, onActivate, onDeactivate }: SplineEmbedProps) {
+export default function SplineEmbed({ scene, active, onActivate, onDeactivate, onLoaded }: SplineEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
     setLoaded(true);
-  }, []);
+    onLoaded?.();
+  }, [onLoaded]);
 
   return (
     <div

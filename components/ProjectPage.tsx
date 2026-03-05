@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
@@ -27,7 +27,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   const imageNumber = project.handle.split('_')[1];
   const hasProjectImage = project.slug !== 'resume' && imageNumber;
 
-  useEffect(() => {
+  const runEntryAnimation = useCallback(() => {
     if (!containerRef.current || hasAnimated.current) return;
     hasAnimated.current = true;
 
@@ -118,7 +118,13 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         0.3
       );
     }
-  }, []);
+  }, [project.embedUrl, project.splineScene]);
+
+  // For non-Spline projects, run animation on mount
+  useEffect(() => {
+    if (project.splineScene) return; // Wait for onLoad callback
+    runEntryAnimation();
+  }, [project.splineScene, runEntryAnimation]);
 
   const handleBack = () => {
     if (!containerRef.current) {
@@ -210,6 +216,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                 active={iframeActive}
                 onActivate={() => setIframeActive(true)}
                 onDeactivate={() => setIframeActive(false)}
+                onLoaded={runEntryAnimation}
               />
             </div>
             <div className="flex justify-between items-center" style={{ marginTop: '14px', paddingRight: '4px' }}>
