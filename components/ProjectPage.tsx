@@ -23,6 +23,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   const hasAnimated = useRef(false);
   const router = useRouter();
   const [iframeActive, setIframeActive] = useState(false);
+  const [activeGifIndex, setActiveGifIndex] = useState(0);
 
   const imageNumber = project.handle.split('_')[1];
   const hasProjectImage = project.slug !== 'resume' && imageNumber;
@@ -135,6 +136,15 @@ export default function ProjectPage({ project }: ProjectPageProps) {
     if (project.splineScene) return; // Wait for onLoad callback
     runEntryAnimation();
   }, [project.splineScene, runEntryAnimation]);
+
+  // Cycle through sample GIFs
+  useEffect(() => {
+    if (!project.sampleGifs || project.sampleGifs.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveGifIndex((prev) => (prev + 1) % project.sampleGifs!.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [project.sampleGifs]);
 
   const handleBack = () => {
     if (!containerRef.current) {
@@ -306,6 +316,22 @@ export default function ProjectPage({ project }: ProjectPageProps) {
               </a>
             </div>
           </div>
+        ) : project.sampleGifs && project.sampleGifs.length > 0 ? (
+          <div
+            ref={imageRef}
+            className="overflow-hidden relative"
+            style={{ width: '33.6vw', height: '33.6vw', willChange: 'transform, opacity' }}
+          >
+            {project.sampleGifs.map((gif, i) => (
+              <img
+                key={i}
+                src={gif.src}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-contain transition-opacity duration-700"
+                style={{ opacity: i === activeGifIndex ? 1 : 0 }}
+              />
+            ))}
+          </div>
         ) : hasProjectImage ? (
           <div
             ref={imageRef}
@@ -374,10 +400,23 @@ export default function ProjectPage({ project }: ProjectPageProps) {
               </div>
             </div>
           )}
+
+          {/* Live demo link (for projects without embed/spline) */}
+          {project.liveUrl && !project.embedUrl && !project.splineScene && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="section-label animate-in text-white text-[14px] uppercase tracking-[0.15em] transition-opacity"
+              style={{ visibility: 'hidden', cursor: 'none', opacity: 0.4 }}
+              onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; }}
+            >
+              Live Demo ↗
+            </a>
+          )}
         </div>
       </div>
-
-      {/* Right column: Voice interface (digital twin only) */}
       {project.digitalTwin && (
         <div className="voice-panel flex flex-col justify-center items-center" style={{ padding: '40px 60px 40px 0', width: '22vw', flexShrink: 0 }}>
           <TalkToJose />

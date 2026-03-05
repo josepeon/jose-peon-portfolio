@@ -105,6 +105,15 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         >
           GITHUB
         </a>
+        <a
+          href="/finesse"
+          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          style={{ visibility: 'hidden', opacity: 0.4 }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+        >
+          FINESSE
+        </a>
       </div>
 
       {/* Center - Name & Contact */}
