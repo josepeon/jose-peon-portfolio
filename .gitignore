@@ -30,19 +30,12 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env*.local
 
 # vercel
 .vercel
 
-# wrangler
-.wrangler
-
-# large media files (too big for Vercel deployment)
-public/images/scenes-examples/
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.env*.local

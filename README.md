@@ -1,33 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jose Peon — Portfolio
+
+Personal portfolio site for Jose Peon, AI Engineer. Built with Next.js, GSAP animations, and interactive 3D/voice experiences.
+
+**Live:** [josepeon.co](https://josepeon.co)
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **Language:** TypeScript 5
+- **Styling:** Tailwind CSS v4
+- **Animations:** GSAP + SplitText (rolling 3D text, masked reveals, staggered fades)
+- **Smooth Scroll:** Lenis
+- **Cursor:** Framer Motion (spring-based cursor image tracking)
+- **3D:** Spline (self-hosted `.splinecode` scene for O-OH Companion)
+- **Voice AI:** Digital Twin backend (FastAPI on Railway) with Whisper STT, Llama 3.3 70B, ElevenLabs TTS
+
+## Project Structure
+
+```
+app/
+  layout.tsx          # Root layout, GlobalCursor
+  page.tsx            # Homepage -- project list, cursor tracking, Lenis scroll
+  globals.css         # Global styles, cursor: none
+  projects/[slug]/    # Dynamic project pages
+components/
+  Cursor.tsx          # Cursor image element
+  Description.tsx     # Homepage project description overlay
+  Footer.tsx          # Homepage footer
+  GlobalCursor.tsx    # 12px white circle cursor
+  ProjectPage.tsx     # Project detail layout (image | content | voice)
+  ResumePage.tsx      # Resume page with GSAP animations
+  SplineEmbed.tsx     # Spline 3D scene with click-to-activate
+  TalkToJose.tsx      # Voice-only digital twin interface
+data/
+  projects.ts         # 9 project entries with metadata
+  resume.ts           # Resume content
+types/
+  project.ts          # Project TypeScript interface
+public/
+  images/cursors/     # Project cursor images (cursor_1-8.jpg)
+  spline/o-oh/        # Self-hosted Spline scene files
+  videos/             # Kling video for digital twin project
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and fill in values:
 
-## Learn More
+```
+NEXT_PUBLIC_TWIN_API_URL=   # Digital Twin API base URL (Railway)
+NEXT_PUBLIC_TWIN_API_KEY=   # Bearer token for API auth
+```
 
-To learn more about Next.js, take a look at the following resources:
+These are only needed for the Digital Twin voice chat feature. The rest of the site works without them.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deployed on Vercel. Environment variables must be set in Vercel project settings.
+
+```bash
+npm run build
+```
 
 ## Deploy on Vercel
 

@@ -1,2 +1,3 @@
-# Exclude large media files from Vercel deployment
-public/images/scenes-examples/
+# Exclude non-essential files from Vercel deployment
+.agents/
+.claude/
