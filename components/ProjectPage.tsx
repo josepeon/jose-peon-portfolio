@@ -118,6 +118,16 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         0.3
       );
     }
+
+    // 7. Voice panel: fade + scale in
+    const voicePanel = containerRef.current.querySelector('.voice-panel');
+    if (voicePanel) {
+      tl.fromTo(voicePanel,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' },
+        0.4
+      );
+    }
   }, [project.embedUrl, project.splineScene]);
 
   // For non-Spline projects, run animation on mount
@@ -156,6 +166,17 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         opacity: 0,
         scale: 0,
         duration: 0.5,
+        ease: 'power3.in',
+      }, 0);
+    }
+
+    // Fade out the voice interface panel
+    const voicePanel = containerRef.current?.querySelector('.voice-panel');
+    if (voicePanel) {
+      tl.to(voicePanel, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.4,
         ease: 'power3.in',
       }, 0);
     }
@@ -358,7 +379,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
       {/* Right column: Voice interface (digital twin only) */}
       {project.digitalTwin && (
-        <div className="flex flex-col justify-center items-center" style={{ padding: '40px 60px 40px 0', width: '22vw', flexShrink: 0 }}>
+        <div className="voice-panel flex flex-col justify-center items-center" style={{ padding: '40px 60px 40px 0', width: '22vw', flexShrink: 0 }}>
           <TalkToJose />
         </div>
       )}
