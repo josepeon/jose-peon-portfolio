@@ -15,7 +15,29 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Jose Peon",
-  description: "A showcase of amazing projects",
+  description: "AI Engineer - Portfolio",
+  metadataBase: new URL('https://josepeon.co'),
+  openGraph: {
+    title: 'Jose Peon',
+    description: 'AI Engineer - Portfolio',
+    url: 'https://josepeon.co',
+    siteName: 'Jose Peon',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Jose Peon - AI Engineer',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jose Peon',
+    description: 'AI Engineer - Portfolio',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({
