@@ -57,6 +57,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
   return (
     <footer
       ref={footerRef}
+      className="home-footer"
       style={{
         width: '100%',
         backgroundColor: '#000000',
@@ -64,14 +65,10 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         fontSize: '22px',
         fontWeight: 400,
         color: 'white',
-        padding: '18px 60px',
-        display: 'grid',
-        gridTemplateColumns: '1fr auto 1fr',
-        alignItems: 'end',
       }}
     >
       {/* Left - Socials */}
-      <div style={{ display: 'flex', gap: '24px' }}>
+      <div className="footer-left" style={{ display: 'flex', gap: '24px' }}>
         <a
           href="https://instagram.com/josepeoon"
           target="_blank"
@@ -116,18 +113,19 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         </a>
       </div>
 
-      {/* Center - Name & Contact */}
+      {/* Center - Name & Contact (desktop) */}
       <div
+        className="footer-center"
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <span className="footer-text" style={{ lineHeight: '1', marginBottom: '4px', visibility: 'hidden' }}>JOSE PEON</span>
+        <span className="footer-text footer-name" style={{ lineHeight: '1', marginBottom: '4px', visibility: 'hidden' }}>JOSE PEON</span>
         <a
           href="mailto:JOSE@OH.SYSTEMS"
-          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          className="footer-text footer-email text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4 }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
@@ -136,9 +134,26 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         </a>
       </div>
 
-      {/* Right - Title */}
-      <div style={{ textAlign: 'right' }}>
+      {/* Right - Title (desktop) */}
+      <div className="footer-right" style={{ textAlign: 'right' }}>
         <span className="footer-text" style={{ visibility: 'hidden' }}>AI ENGINEER</span>
+      </div>
+
+      {/* Mobile-only bottom rows: email centered, then name left / title right */}
+      <div className="footer-mobile-bottom" style={{ display: 'none' }}>
+        <a
+          href="mailto:JOSE@OH.SYSTEMS"
+          className="footer-text text-white transition-opacity duration-300 cursor-none"
+          style={{ visibility: 'hidden', opacity: 0.4, textAlign: 'center', display: 'block' }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+        >
+          JOSE@OH.SYSTEMS
+        </a>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '6px' }}>
+          <span className="footer-text" style={{ visibility: 'hidden' }}>JOSE PEON</span>
+          <span className="footer-text" style={{ visibility: 'hidden' }}>AI ENGINEER</span>
+        </div>
       </div>
     </footer>
   );

@@ -177,6 +177,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Disable smooth scroll on phones — all content fits in viewport
+    if (window.innerWidth <= 768) return;
+
     const lenis = new Lenis({
       duration: 2.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -243,7 +246,7 @@ export default function Home() {
   const imageNumber = projects[lastImageIndex]?.handle?.split('_')[1];
 
   return (
-    <main onMouseMove={handleMouseMove} className="relative cursor-none h-screen flex flex-col overflow-hidden">
+    <main onMouseMove={handleMouseMove} className="relative cursor-none h-screen flex flex-col overflow-hidden home-main">
       <Description
         projects={projects}
         isExiting={isExiting}
@@ -257,10 +260,10 @@ export default function Home() {
       {/* Cursor image — plain div driven entirely by GSAP, no framer-motion conflict */}
       <div
         ref={cursorImageRef}
-        className="fixed top-0 left-0 pointer-events-none"
+        className="fixed top-0 left-0 pointer-events-none home-cursor-image"
         style={{ zIndex: 50, willChange: 'transform, opacity' }}
       >
-        <div className="h-[40.3vw] w-[33.6vw] rounded-[2vw] overflow-hidden relative">
+        <div className="h-[40.3vw] w-[33.6vw] rounded-[2vw] overflow-hidden relative cursor-img-inner">
           {imageNumber && (
             <Image
               src={`/images/cursors/cursor_${imageNumber}.jpg`}

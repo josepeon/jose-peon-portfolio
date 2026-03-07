@@ -282,7 +282,7 @@ export default function TalkToJose() {
       </div>
 
       {/* Transcript / Response area */}
-      <div className="flex flex-col items-center gap-3 text-center" style={{ minHeight: '80px', maxWidth: '18vw' }}>
+      <div className="flex flex-col items-center gap-3 text-center voice-response-area" style={{ minHeight: '80px', maxWidth: '18vw' }}>
         {lastTranscript && status !== 'idle' && (
           <p className="text-[11px] italic" style={{ color: 'rgba(255,255,255,0.25)', margin: 0 }}>
             &ldquo;{lastTranscript}&rdquo;

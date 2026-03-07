@@ -195,15 +195,15 @@ export default function ProjectPage({ project }: ProjectPageProps) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-screen relative"
+      className="w-full h-screen relative project-page-container"
       style={{ backgroundColor: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', cursor: 'none', overflow: 'hidden' }}
     >
       {/* Top section: existing project layout */}
-      <div className="h-screen w-full flex relative" style={{ flexShrink: 0 }}>
+      <div className="h-screen w-full flex relative project-page-layout" style={{ flexShrink: 0 }}>
       {/* Back button — top-left corner */}
       <button
         onClick={handleBack}
-        className="back-link animate-in text-white text-[22px] uppercase hover:opacity-70 transition-opacity"
+        className="back-link animate-in text-white text-[22px] uppercase hover:opacity-70 transition-opacity project-corner-tl"
         style={{ position: 'absolute', top: '40px', left: '60px', background: 'none', border: 'none', fontFamily: 'inherit', visibility: 'hidden', cursor: 'none', zIndex: 10 }}
       >
         ← BACK
@@ -211,7 +211,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
       {/* Bottom-left project name */}
       <span
-        className="section-label animate-in text-white text-[16px] uppercase opacity-40"
+        className="section-label animate-in text-white text-[16px] uppercase opacity-40 project-corner-bl"
         style={{ position: 'absolute', bottom: '40px', left: '60px', visibility: 'hidden', zIndex: 10 }}
       >
         {project.bottomLeftText}
@@ -219,7 +219,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
       {/* Top-right year */}
       <span
-        className="section-label animate-in text-white text-[18px] uppercase opacity-50"
+        className="section-label animate-in text-white text-[18px] uppercase opacity-50 project-corner-tr"
         style={{ position: 'absolute', top: '40px', right: '60px', visibility: 'hidden', zIndex: 10 }}
       >
         {project.year}
@@ -227,19 +227,19 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
       {/* Bottom-right name */}
       <span
-        className="section-label animate-in text-white text-[16px] uppercase opacity-40"
+        className="section-label animate-in text-white text-[16px] uppercase opacity-40 project-corner-br"
         style={{ position: 'absolute', bottom: '40px', right: '60px', visibility: 'hidden', zIndex: 10 }}
       >
         JOSE PEON · AI ENGINEER
       </span>
 
       {/* Left side: Project image, Spline scene, or embed */}
-      <div className="flex-shrink-0 flex flex-col justify-center" style={{ padding: '40px 0 40px 60px' }}>
+      <div className="flex-shrink-0 flex flex-col justify-center project-media-column" style={{ padding: '40px 0 40px 60px' }}>
         {project.splineScene ? (
           <div>
             <div
               ref={imageRef}
-              className="rounded-[2vw] overflow-hidden relative"
+              className="rounded-[2vw] overflow-hidden relative project-media-frame"
               style={{ width: '33.6vw', height: '40.3vw', willChange: 'transform, opacity', background: '#ffffff', opacity: 0, transform: 'scale(0)' }}
             >
               <SplineEmbed
@@ -276,7 +276,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
           <div>
             <div
               ref={imageRef}
-              className="rounded-[2vw] overflow-hidden relative"
+              className="rounded-[2vw] overflow-hidden relative project-media-frame"
               style={{ width: '33.6vw', height: '40.3vw', willChange: 'transform, opacity', opacity: 0, transform: 'scale(0)' }}
               onMouseLeave={() => setIframeActive(false)}
             >
@@ -319,7 +319,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         ) : project.sampleGifs && project.sampleGifs.length > 0 ? (
           <div
             ref={imageRef}
-            className="overflow-hidden relative"
+            className="overflow-hidden relative project-media-frame project-media-frame--square"
             style={{ width: '33.6vw', height: '33.6vw', willChange: 'transform, opacity' }}
           >
             {project.sampleGifs.map((gif, i) => (
@@ -335,7 +335,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         ) : hasProjectImage ? (
           <div
             ref={imageRef}
-            className="rounded-[2vw] overflow-hidden relative"
+            className="rounded-[2vw] overflow-hidden relative project-media-frame"
             style={{ width: '33.6vw', height: '40.3vw', willChange: 'transform, opacity' }}
           >
             <Image
@@ -350,7 +350,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
       </div>
 
       {/* Middle: Project content */}
-      <div className="flex-1 flex flex-col justify-center" style={{ padding: project.digitalTwin ? '40px 0 40px 48px' : '40px 60px 40px 48px', maxWidth: project.digitalTwin ? '32vw' : undefined }}>
+      <div className="flex-1 flex flex-col justify-center project-content-column" style={{ padding: project.digitalTwin ? '40px 0 40px 48px' : '40px 60px 40px 48px', maxWidth: project.digitalTwin ? '32vw' : undefined }}>
         <div className="flex flex-col justify-center" style={{ gap: '36px' }}>
           <h1
             className="project-page-title animate-in text-white uppercase leading-none"

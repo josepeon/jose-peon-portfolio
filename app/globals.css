@@ -56,10 +56,247 @@ a *, button *, input *, select *, textarea *, label *,
   cursor: none !important;
 }
 
+/* Restore native cursor on touch devices */
+@media (pointer: coarse) {
+  *, *::before, *::after,
+  html, html *,
+  a, button, input, select, textarea, label,
+  [role="button"], [tabindex],
+  a *, button *, input *, select *, textarea *, label *,
+  *::placeholder, *::selection,
+  *:hover, *:focus, *:active, *:visited {
+    cursor: auto !important;
+  }
+  a, button, [role="button"], [tabindex] {
+    cursor: pointer !important;
+  }
+}
+
 .rolling-char {
   display: inline-block;
 }
 
 .footer-line {
   overflow: hidden;
+}
+
+/* Footer base layout (desktop) */
+.home-footer {
+  padding: 18px 60px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+}
+.home-footer .footer-mobile-bottom {
+  display: none;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+/* Smaller laptops / large tablets (≤ 1280px) — gentle squeeze */
+@media (max-width: 1280px) {
+  .project-corner-tl { top: 28px !important; left: 40px !important; }
+  .project-corner-tr { top: 28px !important; right: 40px !important; }
+  .project-corner-bl { bottom: 28px !important; left: 40px !important; }
+  .project-corner-br { bottom: 28px !important; right: 40px !important; }
+  .project-media-column { padding: 40px 0 40px 40px !important; }
+  .project-content-column { padding: 40px 40px !important; }
+
+  /* Home page */
+  .home-footer { padding-left: 40px !important; padding-right: 40px !important; }
+  .home-cursor-image .cursor-img-inner { width: 28vw !important; height: 34vw !important; }
+  .home-cursor-image .enter-project-text { width: 28vw !important; }
+
+  /* Resume */
+  .resume-content { padding: 100px 40px 60px !important; }
+  .resume-back { left: 40px !important; }
+
+  /* Finesse */
+  .finesse-back { left: 40px !important; }
+  .finesse-header { padding: 100px 40px 0 40px !important; }
+  .finesse-cards { padding: 60px 40px 100px 40px !important; }
+  .finesse-footer-note { padding: 0 40px 80px 40px !important; }
+  .finesse-footer-sig { padding: 0 40px 60px 40px !important; }
+}
+
+/* Tablet portrait (≤ 1024px) — stack vertically */
+@media (max-width: 1024px) {
+  /* Project page */
+  .project-page-container {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+  .project-page-layout {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+  .project-media-column {
+    padding: 80px 0 0 !important;
+    align-items: center !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .project-media-frame {
+    width: 55vw !important;
+    height: 66vw !important;
+  }
+  .project-media-frame--square {
+    height: 55vw !important;
+  }
+  .project-content-column {
+    padding: 32px 40px 60px !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+  .project-page-title {
+    font-size: 5vw !important;
+  }
+  .project-corner-tl { top: 24px !important; left: 28px !important; font-size: 18px !important; }
+  .project-corner-tr { top: 24px !important; right: 28px !important; }
+  .project-corner-bl { display: none !important; }
+  .project-corner-br { display: none !important; }
+
+  .voice-panel {
+    width: 100% !important;
+    padding: 40px 40px 60px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Home page */
+  .home-cursor-image { display: none !important; }
+  .project-title { font-size: 7vw !important; }
+  .home-footer {
+    font-size: 16px !important;
+    padding: 14px 28px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  .home-footer .footer-center { display: none !important; }
+  .home-footer .footer-right { display: none !important; }
+  .home-footer .footer-left {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+  .home-footer .footer-mobile-bottom {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Resume */
+  .resume-content { padding: 80px 28px 60px !important; }
+  .resume-back { top: 24px !important; left: 28px !important; font-size: 18px !important; }
+  .resume-name { font-size: 7vw !important; }
+
+  /* Finesse */
+  .finesse-back { top: 24px !important; left: 28px !important; font-size: 18px !important; }
+  .finesse-header { padding: 80px 28px 0 28px !important; }
+  .finesse-title { font-size: 4.5vw !important; white-space: normal !important; }
+  .finesse-cards { padding: 40px 28px 60px 28px !important; }
+  .finesse-grid { grid-template-columns: 1fr !important; }
+  .finesse-footer-note { padding: 0 28px 60px 28px !important; }
+  .finesse-footer-sig { padding: 0 28px 40px 28px !important; }
+
+  /* TalkToJose response area */
+  .voice-response-area { max-width: 80vw !important; }
+}
+
+/* Phone (≤ 768px) */
+@media (max-width: 768px) {
+  /* Project page */
+  .project-media-column {
+    padding: 70px 0 0 !important;
+  }
+  .project-media-frame {
+    width: 80vw !important;
+    height: 96vw !important;
+  }
+  .project-media-frame--square {
+    height: 80vw !important;
+  }
+  .project-content-column {
+    padding: 24px 24px 48px !important;
+  }
+  .project-page-title {
+    font-size: 8vw !important;
+  }
+  .project-corner-tl { top: 20px !important; left: 20px !important; font-size: 16px !important; }
+  .project-corner-tr { top: 20px !important; right: 20px !important; font-size: 14px !important; }
+
+  .voice-panel {
+    padding: 32px 24px 48px !important;
+  }
+
+  /* Home page */
+  .project-title { font-size: 5.7vw !important; margin-top: 8px !important; margin-bottom: 8px !important; }
+  .home-footer {
+    font-size: 14px !important;
+    padding: 12px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .home-footer .footer-center { display: none !important; }
+  .home-footer .footer-right { display: none !important; }
+  .home-footer .footer-left {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+  .home-footer .footer-mobile-bottom {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Lock home page to viewport on phones */
+  .home-main {
+    overflow: hidden !important;
+    touch-action: none;
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+
+  /* Resume */
+  .resume-content { padding: 70px 20px 48px !important; }
+  .resume-back { top: 20px !important; left: 20px !important; font-size: 16px !important; }
+  .resume-name { font-size: 9vw !important; }
+
+  /* Finesse */
+  .finesse-back { top: 20px !important; left: 20px !important; font-size: 16px !important; }
+  .finesse-header { padding: 70px 20px 0 20px !important; }
+  .finesse-title { font-size: 6.5vw !important; }
+  .finesse-cards { padding: 32px 20px 48px 20px !important; }
+  .finesse-footer-note { padding: 0 20px 48px 20px !important; }
+  .finesse-footer-sig { padding: 0 20px 32px 20px !important; }
+
+  /* TalkToJose response area */
+  .voice-response-area { max-width: 90vw !important; }
+}
+
+/* Small phone (≤ 480px) */
+@media (max-width: 480px) {
+  .project-media-frame {
+    width: 88vw !important;
+    height: 105.6vw !important;
+  }
+  .project-media-frame--square {
+    height: 88vw !important;
+  }
+  .project-page-title {
+    font-size: 10vw !important;
+  }
+
+  .project-title { font-size: 6.9vw !important; margin-top: 10px !important; margin-bottom: 10px !important; }
+
+  .home-footer > div { gap: 8px !important; }
+
+  .finesse-title { font-size: 8vw !important; }
 }

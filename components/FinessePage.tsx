@@ -123,16 +123,16 @@ export default function FinessePage() {
       {/* Fixed back button */}
       <button
         onClick={handleBack}
-        className="back-link text-white text-[22px] uppercase hover:opacity-70 transition-opacity fixed"
+        className="back-link text-white text-[22px] uppercase hover:opacity-70 transition-opacity fixed finesse-back"
         style={{ top: '40px', left: '60px', background: 'none', border: 'none', fontFamily: 'inherit', visibility: 'hidden', cursor: 'none', zIndex: 50 }}
       >
         ← BACK
       </button>
 
       {/* Header section */}
-      <div style={{ padding: '120px 60px 0 60px', maxWidth: '900px' }}>
+      <div className="finesse-header" style={{ padding: '120px 60px 0 60px', maxWidth: '900px' }}>
         <h1
-          className="page-title text-white uppercase leading-none"
+          className="page-title text-white uppercase leading-none finesse-title"
           style={{ fontSize: '2.8vw', margin: 0, visibility: 'hidden', whiteSpace: 'nowrap' }}
         >
           {finesseIntro.heading}
@@ -147,8 +147,8 @@ export default function FinessePage() {
       </div>
 
       {/* Experiment cards */}
-      <div style={{ padding: '60px 60px 100px 60px' }}>
-        <div className="grid gap-px" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '1px', backgroundColor: 'rgba(255,255,255,0.06)' }}>
+      <div className="finesse-cards" style={{ padding: '60px 60px 100px 60px' }}>
+        <div className="grid gap-px finesse-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '1px', backgroundColor: 'rgba(255,255,255,0.06)' }}>
           {finesseExperiments.map((exp) => (
             <div
               key={exp.id}
@@ -262,7 +262,7 @@ export default function FinessePage() {
       </div>
 
       {/* Bottom framework note */}
-      <div style={{ padding: '0 60px 80px 60px', maxWidth: '700px' }}>
+      <div className="finesse-footer-note" style={{ padding: '0 60px 80px 60px', maxWidth: '700px' }}>
         <span
           className="section-label text-white uppercase tracking-[0.2em] block"
           style={{ fontSize: '12px', opacity: 0.35, marginBottom: '16px', visibility: 'hidden' }}
@@ -278,7 +278,7 @@ export default function FinessePage() {
       </div>
 
       {/* Footer signature */}
-      <div style={{ padding: '0 60px 60px 60px', display: 'flex', justifyContent: 'space-between', alignItems: 'end' }}>
+      <div className="finesse-footer-sig" style={{ padding: '0 60px 60px 60px', display: 'flex', justifyContent: 'space-between', alignItems: 'end' }}>
         <span
           className="section-label text-white text-[14px] uppercase tracking-[0.15em]"
           style={{ opacity: 0.3, visibility: 'hidden' }}

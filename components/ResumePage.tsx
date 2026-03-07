@@ -113,14 +113,14 @@ export default function ResumePage() {
       {/* Back button — top-left corner */}
       <button
         onClick={handleBack}
-        className="back-link text-white text-[22px] uppercase hover:opacity-70 transition-opacity"
+        className="back-link text-white text-[22px] uppercase hover:opacity-70 transition-opacity resume-back"
         style={{ position: 'fixed', top: '40px', left: '60px', background: 'none', border: 'none', fontFamily: 'inherit', visibility: 'hidden', cursor: 'none', zIndex: 50 }}
       >
         ← BACK
       </button>
 
       {/* Resume content */}
-      <div style={{ padding: '120px 60px 80px', maxWidth: '1100px', margin: '0 auto' }}>
+      <div className="resume-content" style={{ padding: '120px 60px 80px', maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '48px' }}>

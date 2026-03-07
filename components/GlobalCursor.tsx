@@ -14,8 +14,15 @@ export default function GlobalCursor() {
   const cursorY = useSpring(0, spring);
   const hasMovedRef = useRef(false);
   const [visible, setVisible] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
+    // Hide custom cursor on touch devices
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      setIsTouch(true);
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!hasMovedRef.current) {
         hasMovedRef.current = true;
@@ -31,6 +38,8 @@ export default function GlobalCursor() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [cursorX, cursorY]);
+
+  if (isTouch) return null;
 
   return (
     <motion.div
