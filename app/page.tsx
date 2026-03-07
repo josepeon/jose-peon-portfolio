@@ -23,6 +23,7 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const hasMovedRef = useRef(false);
   const [cursorVisible, setCursorVisible] = useState(false);
+  const [titlesReady, setTitlesReady] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [lastImageIndex, setLastImageIndex] = useState(0);
@@ -34,6 +35,10 @@ export default function Home() {
   const router = useRouter();
 
   const hasImage = projects[hoveredIndex]?.slug !== 'resume';
+
+  const handleEntryComplete = useCallback(() => {
+    setTitlesReady(true);
+  }, []);
 
   // Navigate only when BOTH title exit and cursor image animations are done
   const tryNavigate = useCallback(() => {
@@ -131,14 +136,14 @@ export default function Home() {
     const el = cursorImageRef.current;
     if (!el || isExitingRef.current) return;
 
-    const shouldShow = cursorVisible && hasImage;
+    const shouldShow = cursorVisible && hasImage && titlesReady;
     gsap.to(el, {
       opacity: shouldShow ? 0.85 : 0,
       duration: shouldShow ? 0.6 : 0.3,
       ease: 'power2.out',
       overwrite: 'auto',
     });
-  }, [cursorVisible, hasImage]);
+  }, [cursorVisible, hasImage, titlesReady]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isExitingRef.current) return;
@@ -244,6 +249,7 @@ export default function Home() {
         isExiting={isExiting}
         onProjectClick={handleProjectClick}
         onTitlesExitComplete={handleTitlesExitComplete}
+        onEntryComplete={handleEntryComplete}
         onHover={handleHover}
       />
       <Footer isExiting={isExiting} />

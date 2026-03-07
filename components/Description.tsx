@@ -11,10 +11,11 @@ interface DescriptionProps {
   isExiting: boolean;
   onProjectClick: (slug: string, projectIndex: number) => void;
   onTitlesExitComplete: () => void;
+  onEntryComplete?: () => void;
   onHover: (index: number) => void;
 }
 
-export default function Description({ projects, isExiting, onProjectClick, onTitlesExitComplete, onHover }: DescriptionProps) {
+export default function Description({ projects, isExiting, onProjectClick, onTitlesExitComplete, onEntryComplete, onHover }: DescriptionProps) {
   const titlesContainerRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
@@ -39,13 +40,14 @@ export default function Description({ projects, isExiting, onProjectClick, onTit
 
       const depth = -window.innerWidth / 8;
 
+      const isLast = i === titles.length - 1;
       gsap.fromTo(
         split.chars,
         { rotationX: -90, opacity: 0, transformOrigin: `50% 50% ${depth}px` },
-        { rotationX: 0, opacity: 1, transformOrigin: `50% 50% ${depth}px`, stagger: 0.03, duration: 0.8, ease: 'power3.out', delay: i * 0.15 }
+        { rotationX: 0, opacity: 1, transformOrigin: `50% 50% ${depth}px`, stagger: 0.03, duration: 0.8, ease: 'power3.out', delay: i * 0.15, onComplete: isLast ? onEntryComplete : undefined }
       );
     });
-  }, []);
+  }, [onEntryComplete]);
 
   // Exit animation: reverse rolling effect on titles only
   useEffect(() => {
