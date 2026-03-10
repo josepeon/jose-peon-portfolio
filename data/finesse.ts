@@ -91,7 +91,7 @@ export const finesseProposal = {
   ] as ProposedRole[],
   compensation: {
     intro: 'Because the role would involve leadership across brand innovation, product development, and collaboration with engineering teams, I would be interested in a structure that reflects the strategic scope of the work.',
-    baseSalary: '$160,000 – $210,000 annually',
+    baseSalary: '$170,000 – $190,000 annually',
     equity: '0.25% – 0.75% depending on scope and structure',
     alternativeIntro: 'A hybrid model combining:',
     alternativeItems: [
@@ -100,6 +100,10 @@ export const finesseProposal = {
       'Innovation project budgets to develop experimental initiatives',
     ],
     goal: 'My main goal is to help FINESSE build meaningful new products and experiences while supporting the brand\'s long-term growth and technological leadership.',
+  },
+  availability: {
+    intro: 'Open to relocating if needed and available to travel.',
+    details: 'Available to travel March 10–24. From March 24 to around May 20, I need to be in New York on Mondays and Thursdays. Outside of those windows, I can travel wherever needed.',
   },
 };
 

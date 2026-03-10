@@ -335,6 +335,38 @@ export default function FinessePage() {
           </p>
         </div>
 
+        {/* Availability Section */}
+        <div
+          className="availability-section experiment-card"
+          style={{
+            visibility: 'hidden',
+            marginTop: '40px',
+            backgroundColor: 'rgba(255,255,255,0.02)',
+            padding: '32px 40px',
+            borderRadius: '4px',
+            border: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
+          <h3
+            className="text-white uppercase leading-tight"
+            style={{ fontSize: '16px', margin: 0, letterSpacing: '0.05em' }}
+          >
+            LOCATION & AVAILABILITY
+          </h3>
+          <p
+            className="text-white leading-relaxed"
+            style={{ fontSize: '15px', opacity: 0.7, margin: '16px 0 0 0' }}
+          >
+            {finesseProposal.availability.intro}
+          </p>
+          <p
+            className="text-white leading-relaxed"
+            style={{ fontSize: '14px', opacity: 0.5, margin: '12px 0 0 0' }}
+          >
+            {finesseProposal.availability.details}
+          </p>
+        </div>
+
         {/* Closing Note */}
         <div className="closing-note" style={{ marginTop: '80px', maxWidth: '800px' }}>
           <p
