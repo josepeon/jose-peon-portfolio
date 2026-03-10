@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { finesseIntro, finesseExperiments } from '@/data/finesse';
+import { finesseIntro, finesseExperiments, finesseProposal } from '@/data/finesse';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
@@ -144,6 +144,217 @@ export default function FinessePage() {
         >
           {finesseIntro.description}
         </p>
+      </div>
+
+      {/* Role Proposal Section */}
+      <div className="proposal-section" style={{ padding: '80px 60px', borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '60px' }}>
+        <h2
+          className="proposal-title section-label text-white uppercase leading-none"
+          style={{ fontSize: '2vw', margin: 0, visibility: 'hidden', letterSpacing: '0.05em' }}
+        >
+          {finesseProposal.heading}
+        </h2>
+
+        <div className="proposal-roles" style={{ marginTop: '60px', display: 'flex', flexDirection: 'column', gap: '60px' }}>
+          {finesseProposal.roles.map((role) => (
+            <div
+              key={role.id}
+              className="role-card experiment-card"
+              style={{
+                visibility: 'hidden',
+                backgroundColor: 'rgba(255,255,255,0.02)',
+                padding: '48px 40px',
+                borderRadius: '4px',
+                border: '1px solid rgba(255,255,255,0.08)',
+              }}
+            >
+              {/* Role Number + Title */}
+              <div>
+                <span
+                  className="text-white uppercase tracking-[0.3em] block"
+                  style={{ fontSize: '12px', opacity: 0.3, marginBottom: '8px' }}
+                >
+                  ROLE {String(role.id).padStart(2, '0')}
+                </span>
+                <h3
+                  className="text-white uppercase leading-tight"
+                  style={{ fontSize: '24px', margin: 0, letterSpacing: '0.02em' }}
+                >
+                  {role.title}
+                </h3>
+              </div>
+
+              {/* Overview */}
+              <p
+                className="text-white leading-relaxed"
+                style={{ fontSize: '15px', opacity: 0.7, margin: '24px 0', maxWidth: '800px' }}
+              >
+                {role.overview}
+              </p>
+
+              {/* Responsibilities */}
+              <div style={{ marginTop: '32px' }}>
+                <span
+                  className="text-white uppercase tracking-[0.2em] block"
+                  style={{ fontSize: '11px', opacity: 0.35, marginBottom: '12px' }}
+                >
+                  KEY RESPONSIBILITIES
+                </span>
+                <ul style={{ margin: 0, paddingLeft: '16px', listStyle: 'none' }}>
+                  {role.responsibilities.map((item, i) => (
+                    <li
+                      key={i}
+                      className="text-white"
+                      style={{ fontSize: '14px', opacity: 0.6, marginBottom: '8px', position: 'relative', paddingLeft: '12px' }}
+                    >
+                      <span style={{ position: 'absolute', left: 0, opacity: 0.3 }}>-</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Initial Initiatives */}
+              <div style={{ marginTop: '32px' }}>
+                <span
+                  className="text-white uppercase tracking-[0.2em] block"
+                  style={{ fontSize: '11px', opacity: 0.35, marginBottom: '12px' }}
+                >
+                  INITIAL INITIATIVES
+                </span>
+                <ul style={{ margin: 0, paddingLeft: '16px', listStyle: 'none' }}>
+                  {role.initiatives.map((item, i) => (
+                    <li
+                      key={i}
+                      className="text-white"
+                      style={{ fontSize: '14px', opacity: 0.6, marginBottom: '8px', position: 'relative', paddingLeft: '12px' }}
+                    >
+                      <span style={{ position: 'absolute', left: 0, opacity: 0.3 }}>-</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Impact */}
+              <div style={{ marginTop: '32px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px' }}>
+                <span
+                  className="text-white uppercase tracking-[0.2em] block"
+                  style={{ fontSize: '11px', opacity: 0.35, marginBottom: '10px' }}
+                >
+                  IMPACT
+                </span>
+                <p
+                  className="text-white leading-relaxed"
+                  style={{ fontSize: '14px', opacity: 0.6, margin: 0 }}
+                >
+                  {role.impact}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Compensation Section */}
+        <div
+          className="compensation-section experiment-card"
+          style={{
+            visibility: 'hidden',
+            marginTop: '80px',
+            backgroundColor: 'rgba(255,255,255,0.02)',
+            padding: '48px 40px',
+            borderRadius: '4px',
+            border: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
+          <h3
+            className="text-white uppercase leading-tight"
+            style={{ fontSize: '20px', margin: 0, letterSpacing: '0.05em' }}
+          >
+            COMPENSATION EXPECTATIONS
+          </h3>
+
+          <p
+            className="text-white leading-relaxed"
+            style={{ fontSize: '15px', opacity: 0.7, margin: '24px 0', maxWidth: '800px' }}
+          >
+            {finesseProposal.compensation.intro}
+          </p>
+
+          <div style={{ display: 'flex', gap: '60px', flexWrap: 'wrap', marginTop: '24px' }}>
+            <div>
+              <span
+                className="text-white uppercase tracking-[0.2em] block"
+                style={{ fontSize: '11px', opacity: 0.35, marginBottom: '8px' }}
+              >
+                BASE SALARY
+              </span>
+              <span className="text-white" style={{ fontSize: '18px', opacity: 0.9 }}>
+                {finesseProposal.compensation.baseSalary}
+              </span>
+            </div>
+            <div>
+              <span
+                className="text-white uppercase tracking-[0.2em] block"
+                style={{ fontSize: '11px', opacity: 0.35, marginBottom: '8px' }}
+              >
+                EQUITY
+              </span>
+              <span className="text-white" style={{ fontSize: '18px', opacity: 0.9 }}>
+                {finesseProposal.compensation.equity}
+              </span>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '40px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px' }}>
+            <span
+              className="text-white uppercase tracking-[0.2em] block"
+              style={{ fontSize: '11px', opacity: 0.35, marginBottom: '12px' }}
+            >
+              {finesseProposal.compensation.alternativeIntro}
+            </span>
+            <ul style={{ margin: 0, paddingLeft: '16px', listStyle: 'none' }}>
+              {finesseProposal.compensation.alternativeItems.map((item, i) => (
+                <li
+                  key={i}
+                  className="text-white"
+                  style={{ fontSize: '14px', opacity: 0.6, marginBottom: '6px', position: 'relative', paddingLeft: '12px' }}
+                >
+                  <span style={{ position: 'absolute', left: 0, opacity: 0.3 }}>-</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <p
+            className="text-white leading-relaxed"
+            style={{ fontSize: '14px', opacity: 0.5, margin: '32px 0 0 0', fontStyle: 'italic' }}
+          >
+            {finesseProposal.compensation.goal}
+          </p>
+        </div>
+
+        {/* Closing Note */}
+        <div className="closing-note" style={{ marginTop: '80px', maxWidth: '800px' }}>
+          <p
+            className="content-block text-white leading-relaxed"
+            style={{ fontSize: '16px', opacity: 0.6, margin: 0, visibility: 'hidden' }}
+          >
+            {finesseProposal.closingNote}
+          </p>
+        </div>
+      </div>
+
+      {/* Divider before experiments */}
+      <div style={{ padding: '0 60px' }}>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginBottom: '60px' }}></div>
+        <h2
+          className="section-label text-white uppercase"
+          style={{ fontSize: '1.5vw', opacity: 0.5, marginBottom: '40px', visibility: 'hidden', letterSpacing: '0.1em' }}
+        >
+          AI CONCEPT EXPLORATIONS
+        </h2>
       </div>
 
       {/* Experiment cards */}
