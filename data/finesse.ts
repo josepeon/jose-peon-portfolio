@@ -12,7 +12,7 @@ export interface FinesseExperiment {
 export const finesseIntro = {
   heading: 'FOR FINESSE',
   description:
-    'A proposal for how I could contribute to FINESSE through AI innovation, product development, and brand strategy. Below are three potential role structures followed by concept explorations demonstrating my approach to AI-driven fashion experiences.',
+    'A proposal outlining how I could contribute to FINESSE through AI innovation, product development, and brand strategy, helping expand the company\'s technological capabilities and consumer experiences. Below are three potential role structures followed by concept explorations demonstrating my approach.',
 };
 
 export interface ProposedRole {
@@ -31,7 +31,7 @@ export const finesseProposal = {
     {
       id: 1,
       title: 'HEAD OF AI & BRAND INNOVATION',
-      overview: 'Lead the development of AI-driven initiatives that expand FINESSE\'s brand presence, product capabilities, and consumer experiences. This role sits at the intersection of brand, product, and engineering, focusing on identifying and launching new technologies and creative concepts that move the brand forward culturally and technologically.',
+      overview: 'Lead the development of AI-driven initiatives that expand FINESSE\'s brand presence, product capabilities, and consumer experiences. This role sits at the intersection of brand, product, and engineering, focusing on identifying and launching new technologies, products, and creative concepts that expand the brand culturally and technologically.',
       responsibilities: [
         'Identify and develop new AI-powered products and experiences for the FINESSE ecosystem',
         'Lead experimental projects that explore how AI can shape fashion design, production, and consumer interaction',
@@ -46,7 +46,7 @@ export const finesseProposal = {
         'AI-powered product discovery and shopping experiences',
         'Experimental immersive brand environments',
       ],
-      impact: 'This role would enable FINESSE to continuously experiment with new technologies while strengthening its position as a forward-thinking fashion brand.',
+      impact: 'This role would enable FINESSE to continuously experiment with new technologies while strengthening its position as a forward-thinking fashion brand, positioning FINESSE as a leader in the intersection of fashion, technology, and AI.',
     },
     {
       id: 2,
@@ -66,7 +66,7 @@ export const finesseProposal = {
         'Community-driven fashion creation platforms',
         'AI-powered personalization of digital shopping experiences',
       ],
-      impact: 'This role would focus on transforming experimental ideas into real products that expand the FINESSE platform and increase user engagement.',
+      impact: 'This role would focus on transforming experimental ideas into real products that expand the FINESSE platform and increase user engagement, positioning FINESSE as a leader in the intersection of fashion, technology, and AI.',
     },
     {
       id: 3,
@@ -86,12 +86,12 @@ export const finesseProposal = {
         'Interactive digital environments for product discovery',
         'Voice-based and conversational commerce tools',
       ],
-      impact: 'This role would allow FINESSE to rapidly explore emerging technologies and integrate them into both product development and consumer experiences.',
+      impact: 'This role would allow FINESSE to rapidly explore emerging technologies and integrate them into both product development and consumer experiences, positioning FINESSE as a leader in the intersection of fashion, technology, and AI.',
     },
   ] as ProposedRole[],
   compensation: {
     intro: 'Because the role would involve leadership across brand innovation, product development, and collaboration with engineering teams, I would be interested in a structure that reflects the strategic scope of the work.',
-    baseSalary: '$170,000 – $190,000 annually',
+    baseSalary: '$160,000 – $190,000 annually depending on role scope',
     equity: '0.25% – 0.75% depending on scope and structure',
     alternativeIntro: 'A hybrid model combining:',
     alternativeItems: [
