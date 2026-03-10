@@ -10,9 +10,9 @@ export interface FinesseExperiment {
 }
 
 export const finesseIntro = {
-  heading: 'AI EXPERIMENTS FOR FINESSE',
+  heading: 'FOR FINESSE',
   description:
-    'Concept explorations investigating how AI could generate brand buzz, community participation, and new fashion production systems. Each concept is designed as a rapid prototype experiment, tested with real users.',
+    'A proposal for how I could contribute to FINESSE through AI innovation, product development, and brand strategy. Below are three potential role structures followed by concept explorations demonstrating my approach to AI-driven fashion experiences.',
 };
 
 export interface ProposedRole {
