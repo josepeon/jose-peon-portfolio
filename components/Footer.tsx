@@ -102,6 +102,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         >
           GITHUB
         </a>
+        {/*
         <a
           href="/finesse"
           className="footer-text text-white transition-opacity duration-300 cursor-none"
@@ -111,6 +112,7 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
         >
           FINESSE
         </a>
+        */}
       </div>
 
       {/* Center - Name & Contact (desktop) */}
