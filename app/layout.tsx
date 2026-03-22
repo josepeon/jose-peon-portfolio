@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import GlobalCursor from "@/components/GlobalCursor";
 import "./globals.css";
 
@@ -58,6 +59,7 @@ export default function RootLayout({
         {children}
         <GlobalCursor />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
