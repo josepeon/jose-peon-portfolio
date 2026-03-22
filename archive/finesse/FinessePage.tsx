@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { finesseIntro, finesseExperiments, finesseProposal } from '@/data/finesse';
+import { finesseIntro, finesseExperiments, finesseProposal } from './finesse-data';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 

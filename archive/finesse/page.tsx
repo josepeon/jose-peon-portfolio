@@ -1,5 +1,9 @@
-import FinessePage from '@/components/FinessePage';
+import { notFound } from 'next/navigation';
+
+// import FinessePage from '@/components/FinessePage';
 
 export default function Finesse() {
-  return <FinessePage />;
+  // Finesse page intentionally disabled.
+  // return <FinessePage />;
+  notFound();
 }
