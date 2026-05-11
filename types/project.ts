@@ -13,4 +13,6 @@ export interface Project {
   bottomLeftText: string;
   year: string;
   slug: string;
+  /** When true, omit from the home page list but keep /projects/<slug> reachable. */
+  hideFromHome?: boolean;
 }

@@ -9,6 +9,11 @@ import Footer from '@/components/Footer';
 import { projects } from '@/data/projects';
 import gsap from 'gsap';
 
+// Home page list: drop entries flagged hideFromHome. Project detail pages
+// (`/projects/<slug>`) still resolve against the full `projects` array, so
+// hidden entries remain deep-linkable.
+const homeProjects = projects.filter((p) => !p.hideFromHome);
+
 // Slower, lazier spring for the cursor image
 const imageSpring = {
   stiffness: 50,
@@ -34,7 +39,7 @@ export default function Home() {
   const titlesAnimDone = useRef(false);
   const router = useRouter();
 
-  const hasImage = projects[hoveredIndex]?.slug !== 'resume';
+  const hasImage = homeProjects[hoveredIndex]?.slug !== 'resume';
 
   const handleEntryComplete = useCallback(() => {
     setTitlesReady(true);
@@ -50,7 +55,7 @@ export default function Home() {
   const handleHover = useCallback((i: number) => {
     if (isExitingRef.current) return; // Don't change image during exit
     setHoveredIndex(i);
-    if (projects[i]?.slug !== 'resume') {
+    if (homeProjects[i]?.slug !== 'resume') {
       setLastImageIndex(i);
     }
   }, []);
@@ -208,7 +213,7 @@ export default function Home() {
         const scrollY = lenisRef.current.scroll;
 
         const sectionHeight = windowHeight * 1.2;
-        const totalSections = projects.length + 1;
+        const totalSections = homeProjects.length + 1;
 
         const currentSectionIndex = Math.round(scrollY / sectionHeight);
         const targetSection = Math.max(0, Math.min(currentSectionIndex, totalSections - 1));
@@ -243,12 +248,12 @@ export default function Home() {
   }, []);
 
   // Image source for cursor
-  const imageNumber = projects[lastImageIndex]?.handle?.split('_')[1];
+  const imageNumber = homeProjects[lastImageIndex]?.handle?.split('_')[1];
 
   return (
     <main onMouseMove={handleMouseMove} className="relative cursor-none h-screen flex flex-col overflow-hidden home-main">
       <Description
-        projects={projects}
+        projects={homeProjects}
         isExiting={isExiting}
         onProjectClick={handleProjectClick}
         onTitlesExitComplete={handleTitlesExitComplete}

@@ -100,6 +100,7 @@ export const projects: Project[] = [
     bottomLeftText: '3D SCAN PROCESSOR',
     year: '2025',
     slug: '3d-scan-processor',
+    hideFromHome: true,
   },
   {
     id: '9',
