@@ -68,7 +68,7 @@ export const resume = {
       location: 'New York, NY',
       highlights: [
         'Architected and built the O-OH Companion backend: a full speech-to-speech AI pipeline (Whisper ASR, Llama 3.3 70B, Edge TTS) with 5-layer persistent memory (Redis), partial audio streaming (50-70% faster TTFA), 39 API endpoints, and three WebSocket channels.',
-        'Designed the Self-Improving Agent infrastructure: a self-play LoRA fine-tuning loop on Apple Silicon (MLX) where the local model generates conversations and Groq 70B judges quality, with model registry lifecycle management and 92%+ test coverage across 291 tests.',
+        'Designed and shipped Self-Improving Agent — the canonical AI infrastructure library now shared across Digital Twin and Multi-Agent Planner. Self-play LoRA fine-tuning on Apple Silicon (MLX), multi-judge ensemble filtering, OpenAI-compatible inference server with hot-reload on model promotion, classifier-based intelligent routing trained on real outcomes, Streamlit eval dashboard, knowledge distillation pipeline, and Prometheus observability. 549 tests.',
         'Built the OH website backend and integrated Spline 3D interactive elements, Arcware cloud streaming for Unreal Engine experiences, and Shopify Storefront API for spatial commerce.',
         'Led technical strategy and team coordination across 5+ contributors for the OH platform launch, including the Nooon Showroom multiplayer spatial commerce experience in Unreal Engine.',
       ],
@@ -144,15 +144,21 @@ export const resume = {
   projects: [
     {
       name: 'Digital Twin',
-      tech: 'Python · FastAPI · Groq 70B · ChromaDB · ElevenLabs · RAG',
+      tech: 'Python · FastAPI · Groq 70B · ChromaDB · ElevenLabs · SSE · Prometheus',
       description:
-        'Personal AI twin with RAG personality engine ingesting messages from 5 platforms, few-shot priming from real conversations, automatic language/register detection, and dual ElevenLabs voice clones (English/Spanish). Deployed on Railway.',
+        'Personal AI twin with RAG personality engine ingesting messages from 5 platforms, dual ElevenLabs voice clones (EN/ES), four persona modes that tune delivery without changing identity, OpenAI-compatible SSE streaming, OH platform agent adapter, autonomous draft queue with human approval, incremental real-time learning, and a distillation bridge that turns live conversations into local-LoRA training data. 202 tests, production on Railway.',
+    },
+    {
+      name: 'Self-Improving Agent',
+      tech: 'Python · MLX · LoRA · Groq 70B · FastAPI · Streamlit · Prometheus',
+      description:
+        'Canonical AI infrastructure library for the OH platform — self-play LoRA fine-tuning on Apple Silicon, multi-judge ensemble quality filtering, classifier-based intelligent routing trained on real outcomes, OpenAI-compatible inference server with model hot-reload, knowledge distillation pipeline, model registry with full lifecycle, eval dashboard, and adapter merging via weighted task-arithmetic. Now shipped as an installable package; Digital Twin and Multi-Agent Planner depend on it. 549 tests.',
     },
     {
       name: 'Multi-Agent Planner',
-      tech: 'Python · Groq 70B · Flask · RestrictedPython · Docker · AST',
+      tech: 'Python · Groq 70B · FastAPI · DAG Executor · Docker · E2B · AST',
       description:
-        '8-agent pipeline (Planner, Architect, Developer, QA, Integrator, TestGenerator and Documenter) that transforms natural language into production Python code. Sandboxed execution with 3 isolation strategies, 5 LLM providers, critic-feedback retries, and web UI with ZIP export.',
+        '9-agent system that turns natural language into deployed, tested, documented Python or TypeScript projects. DAG-based parallel execution with mid-run replanning, human-in-the-loop approve/edit/regenerate gates, live SSE timeline UI, project + user memory, web-search Researcher agent, best-of-N generation, four-tier sandbox (including E2B cloud), Deployer that auto-picks Railway/Streamlit/Vercel/Modal, and a modify-existing-codebase mode that produces structured diffs against any Git repo. 315 tests.',
     },
     {
       name: 'Fashion Item Generator',
