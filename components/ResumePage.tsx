@@ -203,7 +203,7 @@ export default function ResumePage() {
                   </span>
                 </div>
                 <span className="content-block text-white text-[15px] opacity-50 block" style={{ marginBottom: '12px', visibility: 'hidden' }}>
-                  {exp.company} — {exp.location}
+                  {exp.company} · {exp.location}
                 </span>
                 <ul style={{ margin: 0, paddingLeft: '0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {exp.highlights.map((highlight, i) => (
