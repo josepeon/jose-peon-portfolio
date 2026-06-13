@@ -12,6 +12,8 @@ export interface Project {
   topLeftText: string[];
   bottomLeftText: string;
   year: string;
+  /** Repo creation date, "Mon YYYY". Shown top-right; falls back to year. */
+  created?: string;
   slug: string;
   /** When true, omit from the home page list but keep /projects/<slug> reachable. */
   hideFromHome?: boolean;

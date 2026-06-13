@@ -12,6 +12,7 @@ export const projects: Project[] = [
     topLeftText: ['BACKEND ENGINEERING', 'SYSTEM ARCHITECTURE', '3D WEB INTEGRATION', 'TECHNICAL STRATEGY', 'TEAM LEAD'],
     bottomLeftText: 'OH SYSTEMS',
     year: '2026',
+    created: 'Feb 2026',
     slug: 'oh-systems',
   },
   {
@@ -24,6 +25,7 @@ export const projects: Project[] = [
     topLeftText: ['CREATIVE DIRECTION', 'INTERIOR DESIGN', 'ASSET CREATION', 'TEAM MANAGEMENT', 'CONCEPT DEVELOPMENT'],
     bottomLeftText: 'NOOON SHOWROOM',
     year: '2026',
+    created: 'Feb 2026',
     slug: 'nooon-showroom',
   },
   {
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     topLeftText: ['BACKEND ARCHITECTURE', 'VOICE PIPELINE', 'MEMORY SYSTEM DESIGN', 'API ENGINEERING', 'REAL-TIME STREAMING'],
     bottomLeftText: 'O-OH COMPANION',
     year: '2026',
+    created: 'Feb 2026',
     slug: 'o-oh-companion',
   },
   {
@@ -48,6 +51,7 @@ export const projects: Project[] = [
     topLeftText: ['RAG ENGINEERING', 'VOICE CLONING', 'DATA PIPELINE', 'PERSONA SYSTEMS', 'PLATFORM INTEGRATION'],
     bottomLeftText: 'DIGITAL TWIN',
     year: '2026',
+    created: 'Mar 2026',
     slug: 'digital-twin',
   },
   {
@@ -59,6 +63,7 @@ export const projects: Project[] = [
     topLeftText: ['FINE-TUNING PIPELINE', 'SELF-PLAY TRAINING', 'MLX / APPLE SILICON', 'INFERENCE SERVER', 'DISTILLATION'],
     bottomLeftText: 'SELF-IMPROVING AGENT',
     year: '2026',
+    created: 'Feb 2026',
     slug: 'self-improving-agent',
   },
   {
@@ -70,6 +75,7 @@ export const projects: Project[] = [
     topLeftText: ['DAG ORCHESTRATION', 'HUMAN-IN-THE-LOOP', 'MULTI-PROVIDER LLM', 'CODE GENERATION', 'DEPLOYMENT AUTOMATION'],
     bottomLeftText: 'MULTI-AGENT PLANNER',
     year: '2025',
+    created: 'Jul 2025',
     slug: 'multi-agent-planner',
   },
   {
@@ -87,6 +93,7 @@ export const projects: Project[] = [
     topLeftText: ['DEEP LEARNING', 'GENERATIVE MODELS', 'CNN CLASSIFICATION', 'LATENT SPACE METHODS', 'MODEL DEPLOYMENT'],
     bottomLeftText: 'FASHION ITEM GENERATOR',
     year: '2025',
+    created: 'Sep 2025',
     slug: 'fashion-item-generator',
   },
   {
@@ -99,6 +106,7 @@ export const projects: Project[] = [
     topLeftText: ['3D GEOMETRY ANALYSIS', 'ML CLASSIFICATION', 'MESH PROCESSING', 'DATA VISUALIZATION', 'WEB DEPLOYMENT'],
     bottomLeftText: '3D SCAN PROCESSOR',
     year: '2025',
+    created: 'Jul 2025',
     slug: '3d-scan-processor',
     hideFromHome: true,
   },

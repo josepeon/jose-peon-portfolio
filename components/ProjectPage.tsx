@@ -222,7 +222,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         className="section-label animate-in text-white text-[18px] uppercase opacity-50 project-corner-tr"
         style={{ position: 'absolute', top: '40px', right: '60px', visibility: 'hidden', zIndex: 10 }}
       >
-        {project.year}
+        {project.created ?? project.year}
       </span>
 
       {/* Bottom-right name */}
