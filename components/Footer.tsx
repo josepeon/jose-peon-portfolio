@@ -115,13 +115,13 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
       >
         <span className="footer-text footer-name" style={{ lineHeight: '1', marginBottom: '4px', visibility: 'hidden' }}>JOSE PEON</span>
         <a
-          href="mailto:JOSE@OH.SYSTEMS"
+          href="mailto:josepeon1803@gmail.com"
           className="footer-text footer-email text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4 }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
-          JOSE@OH.SYSTEMS
+          JOSEPEON1803@GMAIL.COM
         </a>
       </div>
 
@@ -133,13 +133,13 @@ export default function Footer({ isExiting }: { isExiting?: boolean }) {
       {/* Mobile-only bottom rows: email centered, then name left / title right */}
       <div className="footer-mobile-bottom" style={{ display: 'none' }}>
         <a
-          href="mailto:JOSE@OH.SYSTEMS"
+          href="mailto:josepeon1803@gmail.com"
           className="footer-text text-white transition-opacity duration-300 cursor-none"
           style={{ visibility: 'hidden', opacity: 0.4, textAlign: 'center', display: 'block' }}
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7'; }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
-          JOSE@OH.SYSTEMS
+          JOSEPEON1803@GMAIL.COM
         </a>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '6px' }}>
           <span className="footer-text" style={{ visibility: 'hidden' }}>JOSE PEON</span>
