@@ -2,3 +2,8 @@
 *.mov filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
+
+# Cursor preview images are small and must be plain Git blobs (Vercel
+# does not resolve LFS pointers), matching cursor_1..10 already in history.
+public/images/cursors/*.jpg -filter -diff -merge
+public/images/cursors/*.png -filter -diff -merge
