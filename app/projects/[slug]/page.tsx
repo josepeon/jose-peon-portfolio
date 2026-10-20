@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import ProjectPageComponent from '@/components/ProjectPage';
 import ResumePageComponent from '@/components/ResumePage';
@@ -9,11 +9,6 @@ interface PageProps {
 
 export default async function ProjectRoute({ params }: PageProps) {
   const { slug } = await params;
-
-  // Keep this legacy project URL alive while preserving josepeon.co as the visible domain.
-  if (slug === 'parsons-homework') {
-    redirect('/parsons-homework');
-  }
 
   const project = projects.find(p => p.slug === slug);
 
@@ -29,10 +24,7 @@ export default async function ProjectRoute({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
-  return [
-    ...projects.map((project) => ({
-      slug: project.slug,
-    })),
-    { slug: 'parsons-homework' },
-  ];
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
 }
