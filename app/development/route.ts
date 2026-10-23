@@ -7,7 +7,7 @@ const html = `<!doctype html>
 <meta name="robots" content="noindex" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-  @page { size: 1100px 2100px; margin: 0; }
+  @page { size: 1100px 2400px; margin: 0; }
   * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body { margin: 0; padding: 0; background: #000; color: #fff; font-family: Helvetica, Arial, sans-serif; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 70px 60px 50px; }
@@ -37,6 +37,12 @@ const html = `<!doctype html>
   .proj p { font-size: 15px; line-height: 1.55; opacity: .65; margin: 0; }
   .edu .deg { font-size: 16px; text-transform: uppercase; }
   .edu .inst { font-size: 14px; opacity: .5; display: block; }
+  .steps { display: flex; flex-direction: column; gap: 18px; }
+  .step { display: grid; grid-template-columns: 44px 190px 1fr; gap: 12px; align-items: baseline; }
+  .step .n { font-size: 13px; opacity: .4; letter-spacing: .15em; }
+  .step .t { font-size: 15px; text-transform: uppercase; }
+  .step p { font-size: 15px; line-height: 1.55; opacity: .65; margin: 0; }
+  @media (max-width: 700px) { .step { grid-template-columns: 34px 1fr; } .step p { grid-column: 2; } }
   a { color: inherit; text-decoration: none; }
   .tag a { opacity: 1; }
 </style>
@@ -59,6 +65,17 @@ const html = `<!doctype html>
   <section>
     <span class="label">Summary</span>
     <p class="summary">Fashion designer and founder of NOOON. I develop garments from pattern to tech pack to sampling to factory handoff, and I handle sourcing, costing, and quality checks on my own collections. I am ready to travel to factories and work to tight timelines. Authorized to work in the US and the EU.</p>
+  </section>
+
+  <section>
+    <span class="label">Process</span>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><span class="t">Research and brief</span><p>Define the garment, fit, fabrics, and target cost before any pattern work. Check references, test fabric options, and set the margin target.</p></div>
+      <div class="step"><span class="n">02</span><span class="t">Pattern and prototype</span><p>Draft the pattern and build the garment in CLO3D first, then a physical toile to check fit, proportion, pocket placement, and closures. This cuts the number of physical samples.</p></div>
+      <div class="step"><span class="n">03</span><span class="t">Tech pack</span><p>A full tech pack and spec sheet for every style: measurements with points of measure, materials, construction, seam finishes, and hardware placement. Fitting corrections go back into the file.</p></div>
+      <div class="step"><span class="n">04</span><span class="t">Sampling and factory</span><p>Send pattern files (DXF-ASTM) and spec sheets to the factory in the format its pattern room uses. Review each sample against the spec, send marked corrections, and track sample rounds against the order deadline.</p></div>
+      <div class="step"><span class="n">05</span><span class="t">QC and launch</span><p>Check construction, fit, and finish against the spec and defect tolerances before approval. Then product photography, 3D assets, and the online store.</p></div>
+    </div>
   </section>
 
   <section>
