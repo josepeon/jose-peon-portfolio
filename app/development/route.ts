@@ -125,7 +125,7 @@ const html = `<!doctype html>
         </ul>
       </div>
       <div>
-        <div class="row"><span class="role">Product and Campaign Development</span><span class="period">Jan 2025 - Jun 2025</span></div>
+        <div class="row"><span class="role">Product and Campaign Development</span><span class="period">Jun 2024 - Jun 2025</span></div>
         <span class="company">Badson · Remote</span>
         <ul>
           <li>Led sample development and art direction from concept through finished drop. Featured in Highsnobiety's Best of 2024, with sold-out releases.</li>
