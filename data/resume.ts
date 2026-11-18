@@ -179,7 +179,7 @@ export const resume = {
     {
       degree: 'M.S. Computer Science, Artificial Intelligence',
       institution: 'Georgia Institute of Technology (OMSCS)',
-      period: 'Admitted Sep 2026 · Starts Jan 2027',
+      period: 'Admitted Sep 2026',
     },
     {
       degree: "Bachelor's Degree, Fashion / Apparel Design",
