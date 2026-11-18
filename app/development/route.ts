@@ -7,7 +7,7 @@ const html = `<!doctype html>
 <meta name="robots" content="noindex" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-  @page { size: 1100px 2400px; margin: 0; }
+  @page { size: 1100px 2640px; margin: 0; }
   * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body { margin: 0; padding: 0; background: #000; color: #fff; font-family: Helvetica, Arial, sans-serif; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 70px 60px 50px; }
@@ -54,7 +54,7 @@ const html = `<!doctype html>
     <h1>Jose Peon</h1>
     <div class="meta">
       <span class="title">Product Development and Production</span>
-      <span>New York, NY</span>
+      <span>Miami, FL · Open to relocation</span>
       <span>josepeon1803@gmail.com</span>
       <span>(786) 521-5379</span>
       <span>josepeon.com</span>
@@ -91,7 +91,7 @@ const html = `<!doctype html>
         <span class="tag">French terry (500gsm)</span><span class="tag">Technical wovens</span><span class="tag">Recycled textiles</span><span class="tag">Heat transfers (UV, reflective)</span><span class="tag">Embossing</span><span class="tag">Washes</span><span class="tag">NFC tags</span><span class="tag">Magnetic closures</span>
       </div></div>
       <div><span class="cat">3D and Digital</span><div class="tags">
-        <span class="tag">CLO3D</span><span class="tag">Cinema 4D</span><span class="tag">Octane</span><span class="tag">Blender</span><span class="tag">3D scanning</span><span class="tag">3D printing</span><span class="tag">Unreal Engine</span>
+        <span class="tag">CLO3D</span><span class="tag">Cinema 4D</span><span class="tag">Octane</span><span class="tag">ZBrush</span><span class="tag">3D scanning</span><span class="tag">3D printing</span><span class="tag">Unreal Engine</span>
       </div></div>
       <div><span class="cat">Tools</span><div class="tags">
         <span class="tag">Adobe Suite</span><span class="tag">Figma</span><span class="tag">Shopify</span>
@@ -113,15 +113,24 @@ const html = `<!doctype html>
           <li>Prepare the factory package for each drop and work backward from the factory's order deadline to schedule sampling.</li>
           <li>Built the production system: tech pack and BOM templates, a QC inspection checklist with defect tolerances, and a supplier list with backup sources.</li>
           <li>Developed the Double Hood Hoodie, produced at $60 per unit and sold at $180. It is about 30% of all-time revenue.</li>
-          <li>Product collaborations with Converse (9-concept lineup) and Zellerfeld (3D-printed footwear). Debuted at NYFW in Sept 2024. Press in Complex, Highsnobiety, Office, and Metal.</li>
+          <li>Product work with Converse (Stay Still, nine one-of-one pairs, 2026) and Zellerfeld (3D-printed footwear). Debuted at NYFW in Sept 2024. Press in Complex, Highsnobiety, Office, and Metal.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="row"><span class="role">Apparel Designer, SS27 Capsule</span><span class="period">Jun 2026 - Sep 2026</span></div>
+        <span class="company">Confidential client · Contract</span>
+        <ul>
+          <li>Designed and developed an 8-piece capsule for an artist-led apparel brand (client under NDA), from the brief through two factory sampling rounds.</li>
+          <li>The first sample round matched spec on 17 of 17 pieces. Managed two overseas factories directly, with a spec sheet for every style and pattern handoff in DXF-ASTM.</li>
+          <li>Built the costing from factory quotes, with per-style margins at three order volumes, and closed the project on its fixed budget.</li>
         </ul>
       </div>
       <div>
         <div class="row"><span class="role">Creative and Technical Lead</span><span class="period">Sep 2024 - Present</span></div>
         <span class="company">OH · New York, NY · Hybrid</span>
         <ul>
-          <li>Delivered 28 client projects for GOAT, Grailed, Badson, Heliot Emil, and Post Archive Faction, including 3D product visualization, campaign assets, and Shopify builds, on client deadlines.</li>
-          <li>Built IMMRSV SHWRM, a real-time showroom with live checkout that anchored a sold-out NYC launch and a Highsnobiety feature.</li>
+          <li>Delivered client projects for GOAT, Grailed, Badson, Heliot Emil, and Post Archive Faction, including 3D product visualization, campaign assets, and Shopify builds, on client deadlines.</li>
+          <li>Led IMMRSV SHWRM, a real-time showroom with live checkout that anchored a fully booked NYC launch event and a Highsnobiety feature.</li>
         </ul>
       </div>
       <div>
@@ -157,8 +166,8 @@ const html = `<!doctype html>
         <p>Modular construction, technical fabrics, NFC in the garments, and fully 3D-printed footwear made custom-fit from phone scans.</p>
       </div>
       <div>
-        <div class="row"><span class="name">Converse × NOOON</span><span class="tech">Collaboration · 2026</span></div>
-        <p>Developed a 9-concept product lineup and directed a 2-day product and editorial shoot with an 8-person crew.</p>
+        <div class="row"><span class="name">Stay Still</span><span class="tech">NOOON with Converse · 2026</span></div>
+        <p>Nine one-of-one pairs across three Converse models, designed and hand-built in house, then a 2-day product and editorial shoot with an 8-person crew. Released Nov 2026 with Converse's sign-off.</p>
       </div>
     </div>
   </section>

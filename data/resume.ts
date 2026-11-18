@@ -1,7 +1,7 @@
 export const resume = {
   name: 'JOSE PEON',
   title: 'AI Engineer',
-  location: 'New York, NY',
+  location: 'Miami, FL',
   contact: '+1 786-521-5379',
   email: 'josepeon1803@gmail.com',
   github: 'github.com/josepeon',
@@ -97,7 +97,7 @@ export const resume = {
     {
       role: 'Product and Campaign Development',
       company: 'Badson',
-      period: 'Jan 2025 – Jun 2025',
+      period: 'Jun 2024 – Jun 2025',
       location: 'Remote',
       highlights: [
         'Led product and campaign development through the brand’s 2024-25 run, owning art direction and sample development from concept through finished drop.',
@@ -176,6 +176,11 @@ export const resume = {
   ],
 
   education: [
+    {
+      degree: 'M.S. Computer Science, Artificial Intelligence',
+      institution: 'Georgia Institute of Technology (OMSCS)',
+      period: 'Admitted Sep 2026 · Starts Jan 2027',
+    },
     {
       degree: "Bachelor's Degree, Fashion / Apparel Design",
       institution: 'Parsons School of Design, The New School',
