@@ -126,7 +126,7 @@ const html = `<!doctype html>
         </ul>
       </div>
       <div>
-        <div class="row"><span class="role">Creative and Technical Lead</span><span class="period">Sep 2024 - Present</span></div>
+        <div class="row"><span class="role">Creative and Technical Lead</span><span class="period">Sep 2025 - Present</span></div>
         <span class="company">OH · New York, NY · Hybrid</span>
         <ul>
           <li>Delivered client projects for GOAT, Grailed, Badson, Heliot Emil, and Post Archive Faction, including 3D product visualization, campaign assets, and Shopify builds, on client deadlines.</li>
