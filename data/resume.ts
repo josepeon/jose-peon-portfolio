@@ -64,7 +64,7 @@ export const resume = {
     {
       role: 'AI Engineer & Technical Lead',
       company: 'OH',
-      period: 'Sep 2025 – Present',
+      period: 'Feb 2025 – Present',
       location: 'New York, NY · Hybrid',
       highlights: [
         'Architected and built the O-OH Companion backend: a full speech-to-speech AI pipeline (Whisper ASR, Llama 3.3 70B, Edge TTS) with 5-layer persistent memory (Redis), partial audio streaming (50-70% faster TTFA), 39 API endpoints, and three WebSocket channels.',
